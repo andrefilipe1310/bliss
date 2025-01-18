@@ -1,2 +1,2 @@
 # bliss
-Aplicativo para gerenciamento de casamentos
+Aplicativo para gerenciamento de casamentos.
