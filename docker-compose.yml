@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Porta exposta no host
+    container_name: bliss-backend
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" # Porta exposta no host
+    container_name: bliss-frontend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
