@@ -1,9 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-img
+      class="logo-img"
+      src="../../../assets/images/logo.png"
+      alt="Bliss Logo"
+    ></ion-img>
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-tabs >
   <ion-tab-bar slot="bottom" class="navbar">
-    <ion-tab-button tab="home" class="navButton">
-      <ion-icon name="home"></ion-icon>
-    </ion-tab-button>
-
     <ion-tab-button tab="inviteManagment" class="navButton">
       <ion-icon name="list-outline"></ion-icon>
     </ion-tab-button>
@@ -16,7 +23,7 @@
       <ion-icon name="cash"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="configPage" class="navButton">
+    <ion-tab-button tab="profilePage" class="navButton">
       <ion-icon name="person-circle-outline"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>

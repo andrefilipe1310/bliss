@@ -1,0 +1,61 @@
+
+
+<ion-content [fullscreen]="true" class="content">
+  <div>
+    <h1 class="title">LISTA DE CONVIDADOS</h1>
+    <div class="flex center container-separation">
+      <div class="line"></div>
+      <div class="separation"></div>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <div>
+    <ion-button id="open-custom-dialog" class="open-invitation">
+      <ion-icon name="person-add"></ion-icon>
+    </ion-button>
+    <ion-button id="open-custom-dialog" class="open-invitation">
+      <ion-icon name="person-add"></ion-icon>
+    </ion-button>
+  </div>
+
+  <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
+    <ng-template>
+      <div class="wrapper">
+        <h1 class="title-invite">Enviar Convite</h1>
+
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input placeholder="Enter text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input placeholder="Enter text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Telefone</ion-label>
+            <ion-input placeholder="Enter text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Tipo de convidado</ion-label>
+            <ion-select interface="action-sheet" placeholder="Selecione o tipo">
+              <ion-select-option value="Convidado">Convidado</ion-select-option>
+              <ion-select-option value="Padrinho">Padrinho</ion-select-option>
+              <ion-select-option value="Madrinha">Madrinha</ion-select-option>
+              <ion-select-option value="mãe da noiva">mãe da noiva</ion-select-option>
+              <ion-select-option value="pai da noiva">pai da noiva</ion-select-option>
+              <ion-select-option value="mãe do noivo">mãe do noivo</ion-select-option>
+              <ion-select-option value="pai do noivo">pai do noivo</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <div class="button-container">
+          <ion-button class="send-button">Default</ion-button>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+

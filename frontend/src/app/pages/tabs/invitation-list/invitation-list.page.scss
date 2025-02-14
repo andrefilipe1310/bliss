@@ -1,0 +1,152 @@
+@font-face {
+    font-family: 'MainFont';
+    src: url('../../../../assets/fonts/Main-Font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+.flex{
+    display: flex;
+}
+.colunm{
+    flex-direction: column;
+}
+.center{
+    align-items: center;
+    justify-content: center;
+}
+
+.title{
+    color: red;
+    text-align: center;
+    width: 100%;
+    font-family: 'MainFont';
+    font-size: 2.1rem;
+    color: var(--secound-color)
+}
+
+.container-separation{
+    height: 15px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.line{
+    width: 30%;
+    height: 1px;
+    background-color: var(--secound-color);
+}
+.separation{
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    rotate: 45deg;
+    background-color: var(--secound-color);
+}
+
+ion-content{
+    --padding-top: 6rem
+}
+
+.title-invite{
+    text-align:center;
+    font-size: 2.5rem;
+    font-family: 'MainFont';
+    color: var(--secound-color)
+}
+ion-list{
+    ion-item{
+        width: 20rem;
+        max-height: 90rem;
+    }
+}
+
+ion-input{
+    border: 1px solid var(--secound-color);
+    border-radius: 5px; 
+    --padding-start: 20px;
+    --padding-end: 20px; 
+    margin-top: 0.5rem;
+}
+
+ion-button:nth-of-type(1){
+    border: 1px solid var(--secound-color);
+    --background: none;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 25px;
+    --box-shadow:none
+}
+ion-icon:nth-of-type(1){
+    color: var(--secound-color);
+    font-size: 2rem;
+}
+
+ion-select{
+    border: 1px solid var(--secound-color);
+    border-radius: 5px; 
+    --padding-start: 20px;
+    --padding-end: 20px; 
+    margin-top: 0.5rem;
+    
+}
+ion-select::part(icon) {
+    justify-self: end;
+    visibility: hidden;
+  }
+
+ion-input:hover{
+    border: 2px solid var(--secound-color);
+}
+
+ion-label{
+    margin-left: 0.8rem;
+}
+
+.send-button{
+    width: 15rem;
+    height: 100%;
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    justify-self: center;
+    margin-top: 2rem;
+}
+
+.open-invitation{
+    width: 80%;
+    --background-color: #f1f1f1 
+}
+
+
+//styled from ionic
+
+ion-modal#example-modal {
+    --width: fit-content;
+    --min-width: 250px;
+    --height: fit-content;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  }
+  
+  ion-modal#example-modal h1 {
+    margin: 20px 20px 10px 20px;
+  }
+  
+  ion-modal#example-modal ion-icon {
+    margin-right: 6px;
+  
+    width: 48px;
+    height: 48px;
+  
+    padding: 4px 0;
+  
+    color: #aaaaaa;
+  }
+  
+  ion-modal#example-modal .wrapper {
+    margin-bottom: 10px;
+  }
