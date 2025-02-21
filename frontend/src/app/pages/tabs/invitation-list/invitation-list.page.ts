@@ -25,6 +25,10 @@ import { personCircle } from 'ionicons/icons';
 })
 export class InvitationListPage implements OnInit {
 
+  BrideGuests: string[] = ['guest 1', 'guest 2', 'guest 2', 'guest 4', 'guest 5'];
+  GroomGuests: string[] = ['guest 1', 'guest 2', 'guest 2', 'guest 4', 'guest 5'];
+ 
+
   constructor() { }
 
   ngOnInit() {
