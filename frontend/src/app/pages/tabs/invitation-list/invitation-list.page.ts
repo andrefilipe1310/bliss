@@ -17,6 +17,12 @@ import {
 import { addIcons } from 'ionicons';
 import { personCircle } from 'ionicons/icons';
 
+interface Convidado {
+  id: number;
+  nome: string;
+  tipo?: string; // Opcional, caso você queira adicionar mais propriedades
+}
+
 @Component({
   selector: 'app-invitation-list',
   templateUrl: './invitation-list.page.html',
@@ -25,8 +31,25 @@ import { personCircle } from 'ionicons/icons';
 })
 export class InvitationListPage implements OnInit {
 
-  BrideGuests: string[] = ['guest 1', 'guest 2', 'guest 2', 'guest 4', 'guest 5'];
-  GroomGuests: string[] = ['guest 1', 'guest 2', 'guest 2', 'guest 4', 'guest 5'];
+
+  BrideGuests: Convidado[] = [
+    {
+      id:1,
+      nome:"maria lúcia",
+      tipo: "mãe da noiva"
+    },
+    {
+      id:2,
+      nome:"Jéssica",
+      tipo: "Convidada"
+    },
+    {
+      id:3,
+      nome:"Priscila",
+      tipo: "Madrinha"
+    }
+  ]
+  GroomGuests: Object[] = [];
  
 
   constructor() { }

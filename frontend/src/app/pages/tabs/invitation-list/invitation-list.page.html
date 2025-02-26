@@ -115,10 +115,10 @@
     <ion-grid>
       <ion-row>
         <ion-col class="guest" size="3" *ngFor="let guest of BrideGuests">
-          <ion-button id="open-modal-invite" >
+          <ion-button [id]="'open-modal-invite-' + guest.id" >
             <ion-icon name="person"></ion-icon>
           </ion-button>
-          <ion-label>{{ guest }}</ion-label>
+          <ion-label> {{ guest.nome }}</ion-label>
         </ion-col>
     </ion-row>
     </ion-grid>
@@ -146,16 +146,16 @@
   </div>
 </ion-content>
 
-<ion-modal id="example-modal" #modal trigger="open-modal-invite">
+<ion-modal id="example-modal" #modal [trigger]="'open-modal-invite-' + guest.id" *ngFor="let guest of BrideGuests" >
   <ng-template>
     <div class="wrapper">
-      <h1 class="title-invitation">Nome do convidado</h1>
+      <h1 class="title-invitation">{{guest.nome}}</h1>
       <div class="photo-container">
         <ion-icon name="person"></ion-icon>
       </div>
         <ion-item>
           <ion-label position="stacked">Tipo de convidado</ion-label>
-          <ion-select interface="action-sheet" placeholder="Selecione o tipo">
+          <ion-select interface="action-sheet" placeholder="{{guest.tipo}}">
             <ion-select-option value="Convidado">Convidado</ion-select-option>
             <ion-select-option value="Padrinho">Padrinho</ion-select-option>
             <ion-select-option value="Madrinha">Madrinha</ion-select-option>
