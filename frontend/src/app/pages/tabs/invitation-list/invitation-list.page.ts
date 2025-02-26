@@ -17,10 +17,13 @@ import {
 import { addIcons } from 'ionicons';
 import { personCircle } from 'ionicons/icons';
 
+
+
+//* interfaces e types precisam ser colocados em arquivos a parte e nomes em ingles de classe e atributos
 interface Convidado {
   id: number;
   nome: string;
-  tipo?: string; // Opcional, caso você queira adicionar mais propriedades
+  tipo?: string; 
 }
 
 @Component({
@@ -31,7 +34,7 @@ interface Convidado {
 })
 export class InvitationListPage implements OnInit {
 
-
+  // variavel começa com minusculo
   BrideGuests: Convidado[] = [
     {
       id:1,
@@ -49,11 +52,12 @@ export class InvitationListPage implements OnInit {
       tipo: "Madrinha"
     }
   ]
+  // variavel começa com minusculo e não usar tipos genericos de preferencias
   GroomGuests: Object[] = [];
  
-
+  // colocar o construtor no topo
   constructor() { }
-
+  // Colocar no topo
   ngOnInit() {
   }
 

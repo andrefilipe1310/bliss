@@ -24,7 +24,7 @@
       <ion-label>Adicionar convidado noivo</ion-label>
     </div>
   </div>
-
+  <!-- *Usar id para o projeto e não um generico -->
   <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
     <ng-template>
       <div class="wrapper">
@@ -63,7 +63,7 @@
     </ng-template>
   </ion-modal>
 
-
+  <!-- *Usar id para o projeto e não um generico -->
   <ion-modal id="example-modal" #modal trigger="open-custom-dialog2">
     <ng-template>
       <div class="wrapper">
@@ -123,7 +123,7 @@
     </ion-row>
     </ion-grid>
   </div>
-  
+  <!-- * evitar numeros no nome de classe -->
   <div class="flex center container-separation2">
     <div class="line"></div>
     <div>
@@ -145,7 +145,7 @@
     </ion-grid>
   </div>
 </ion-content>
-
+<!-- *Usar id para o projeto e não um generico -->
 <ion-modal id="example-modal" #modal [trigger]="'open-modal-invite-' + guest.id" *ngFor="let guest of BrideGuests" >
   <ng-template>
     <div class="wrapper">
@@ -156,6 +156,7 @@
         <ion-item>
           <ion-label position="stacked">Tipo de convidado</ion-label>
           <ion-select interface="action-sheet" placeholder="{{guest.tipo}}">
+            <!--* value precisa ser no padrão camelCase e em inglês -->
             <ion-select-option value="Convidado">Convidado</ion-select-option>
             <ion-select-option value="Padrinho">Padrinho</ion-select-option>
             <ion-select-option value="Madrinha">Madrinha</ion-select-option>
