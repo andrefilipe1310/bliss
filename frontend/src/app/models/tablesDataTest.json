@@ -1,0 +1,53 @@
+[
+    {
+      "id": "1",
+      "name": "Mesa Principal",
+      "selectedGuests":[]
+    },
+    {
+      "id": "2",
+      "name": "Mesa dos Noivos",
+      "selectedGuests": [
+        {
+          "id": "10",
+          "name": "Isabela Santos",
+          "type": "brideMother",
+          "email": "isabela.santos@example.com",
+          "phone": 11911111111,
+          "photo": "https://example.com/isabela.jpg",
+          "bog": "bride"
+        },
+        {
+          "id": "11",
+          "name": "Rafaela Oliveira",
+          "type": "brideMaid",
+          "email": "rafaela.oliveira@example.com",
+          "phone": 21922222222,
+          "bog": "bride"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Mesa dos Amigos",
+      "selectedGuests": [
+        {
+          "id": "12",
+          "name": "Lucas Mendes",
+          "type": "bestMan",
+          "email": "lucas.mendes@example.com",
+          "phone": 31933333333,
+          "bog": "bride"
+        },
+        {
+          "id": "13",
+          "name": "Camila Costa",
+          "type": "guest",
+          "email": "camila.costa@example.com",
+          "phone": 41944444444,
+          "photo": "https://example.com/camila.jpg",
+          "bog": "bride"
+        }
+      ]
+    }
+  ]

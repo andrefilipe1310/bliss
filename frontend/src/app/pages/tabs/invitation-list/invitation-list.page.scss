@@ -51,7 +51,7 @@
     }
 }
 
-.container-separation2{
+.container-separation-2{
     height: 15px;
     width: 100%;
     justify-content: space-evenly;
@@ -188,7 +188,7 @@ ion-label{
         align-items: center;
         text-align: center;
     }
-    .open-invitation-wife{
+    .open-invitation-bride{
         --border-radius: 20px;
         --border-color: var(--secound-color);
         --border-style: solid;
@@ -201,7 +201,7 @@ ion-label{
     ion-icon{
         font-size: 2rem;
     }
-    .open-invitation-husband{
+    .open-invitation-groom{
         --border-radius: 20px;
         --border-color: var(--blue-text-color);
         --border-style: solid;
@@ -262,7 +262,7 @@ ion-label{
 
 //styled from ionic
 
-ion-modal#example-modal {
+ion-modal#dialog-modal {
     --width: fit-content;
     --min-width: 250px;
     --height: fit-content;
@@ -270,11 +270,11 @@ ion-modal#example-modal {
     --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
   }
   
-  ion-modal#example-modal h1 {
+  ion-modal#dialog-modal h1 {
     margin: 20px 20px 10px 20px;
   }
   
-  ion-modal#example-modal ion-icon {
+  ion-modal#dialog-modal ion-icon {
     margin-right: 6px;
   
     width: 48px;
@@ -285,6 +285,6 @@ ion-modal#example-modal {
     color: #aaaaaa;
   }
   
-  ion-modal#example-modal .wrapper {
+  ion-modal#dialog-modal .wrapper {
     margin-bottom: 10px;
   }

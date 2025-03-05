@@ -1,11 +1,10 @@
 
 <ion-content [fullscreen]="true">
-  <app-table></app-table>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let mesa of mesas" >
-        <ion-button class="tables" id="open-modal-table">
-          {{ mesa }}
+      <ion-col size="6" *ngFor="let table of allTables" >
+        <ion-button class="tables" [id]="'open-modal-table' + table.id">
+          {{ table.name }}
         </ion-button>
       </ion-col>
     </ion-row>
@@ -13,32 +12,37 @@
 
 </ion-content>
 
-<ion-modal id="example-modal" #modal trigger="open-modal-table">
+<ion-modal id="example-modal" #modal [trigger]="'open-modal-table' + table.id" *ngFor="let table of allTables">
   <ng-template>
     <div class="wrapper">
-      <h1 class="title-invitation">Mesa 1</h1>
-      <ion-list >
-        <ion-item *ngFor="let guest of tableList">
-          <p>{{ guest }}</p>
-          <p>tipo 1</p>
-          <ion-button>x</ion-button>
-        </ion-item>
+      <h1 class="title-table">{{table.name}}</h1>
+      <ion-item class="container-input-name">
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input value="{{table.name}}"></ion-input>
+      </ion-item>
+      <ion-list class="guest-list-on-table" >
+        <div *ngFor="let guest of table.selectedGuests" class="guest-on-table">
+          <p>{{ guest.name }}</p>
+          <p>{{ translateData(guest.type) }}</p>
+          <ion-button (click)="removeFromTable(guest,table)" class="button-remove-guest">x</ion-button>
+        </div>
       </ion-list>
 
       <div class="guest-container">
         <ion-grid>
           <ion-row>
-            <ion-col class="guest" size="3" *ngFor="let guest of BrideGuests">
-              <ion-button (click)="adicionarPessoa(guest)">
-                <ion-icon name="person"></ion-icon>
+            <ion-col class="guest" size="3" *ngFor="let guest of guestDataJson">
+              <ion-button (click)="addToTable(guest,table)" class="{{changeGuestButtonStyle(guest,table)}}">
+                {{ guest.name[0] }}
               </ion-button>
-              <ion-label>{{ guest }}</ion-label>
+              <ion-label>{{ guest.name }}</ion-label>
             </ion-col>
         </ion-row>
         </ion-grid>
       </div>
       <div class="button-container">
         <ion-button class="send-button">Salvar</ion-button>
+        <ion-button class="send-button">Excluir</ion-button>
       </div>
     </div>
   </ng-template>

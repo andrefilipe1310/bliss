@@ -13,6 +13,9 @@ import {
   IonSelect, 
   IonSelectOption
 } from '@ionic/angular/standalone';
+import { Guest, Table } from 'src/app/models/pages-interfaces.model';
+import data from '../../../models/tablesDataTest.json' 
+import guestData from '../../../models/testData.json' 
 
 @Component({
   selector: 'app-table-management',
@@ -21,23 +24,72 @@ import {
   standalone: false
 })
 export class TableManagementPage implements OnInit {
+  constructor() { }
 
+  ngOnInit() { }
 
-  //* nome de variavel em inglês
-  mesas: string[] = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
-  BrideGuests: string[] = ['guest 1', 'guest 2', 'guest 2', 'guest 4', 'guest 5'];
-  GroomGuests: string[] = ['guest 1', 'guest 2', 'guest 2', 'guest 4', 'guest 5'];
-  tableList :string[]=[]
-  //* nome de função em inglês
-  adicionarPessoa (guest:string){
-    this.tableList.push(guest)
+  jsonData = data as Table[]
+  guestDataJson = guestData as Guest[]
+
+  allTables:Table[] = this.jsonData
+  
+
+  addToTable = (g:Guest, t:Table) => {
+     const idToFind = g.id
+      const idToReserach = t.selectedGuests.find(guest=>guest.id===idToFind)
+    if (idToReserach){
+      console.log('guest aready added')
+    }else{
+      t.selectedGuests.push(g)
+      console.log('added')
+    }
   }
 
-  constructor() { 
-
+  removeFromTable = (g:Guest,t:Table) => {
+      const newTableGuests = t.selectedGuests.filter(guest=>guest.id !== g.id)
+      t.selectedGuests = newTableGuests
+      console.log('removed')
   }
+  
+  translateData = (t:String) => { 
+    switch(t){
+        case 'guest':
+        return 'Convidado'
+        break;
+        case 'bestMan':
+        return 'Padrinho'
+        break;
+        case 'brideMaid':
+        return 'Madrinha'
+        break;
+        case 'brideMother':
+        return 'Mãe da noiva'
+        break;
+        case 'brideFather':
+        return 'Pai da noiva'
+        break;
+        case 'groomFather':
+        return 'Pai do noivo'
+        break;
+        case 'groomMother':
+        return 'Pai do noivo'
+        break;
+        default:
+        return 'Escolha um tipo de convidado';
+        break;
+    }
+   }
 
-  ngOnInit() {
-  }
+   changeGuestButtonStyle= (g:Guest,t:Table) => {
+      const idToFind = g.id
+      const idToReserach = t.selectedGuests.find(guest=>guest.id===idToFind)
+
+      if(idToReserach){
+        return "taken-guest"
+      }else{
+        return ""
+      }
+
+   }
 
 }

@@ -16,15 +16,9 @@ import {
 
 import { addIcons } from 'ionicons';
 import { personCircle } from 'ionicons/icons';
+import { Guest } from 'src/app/models/pages-interfaces.model';
+import data from '../../../models/testData.json'
 
-
-
-//* interfaces e types precisam ser colocados em arquivos a parte e nomes em ingles de classe e atributos
-interface Convidado {
-  id: number;
-  nome: string;
-  tipo?: string; 
-}
 
 @Component({
   selector: 'app-invitation-list',
@@ -32,33 +26,142 @@ interface Convidado {
   styleUrls: ['./invitation-list.page.scss'],
   standalone: false,
 })
-export class InvitationListPage implements OnInit {
 
-  // variavel começa com minusculo
-  BrideGuests: Convidado[] = [
-    {
-      id:1,
-      nome:"maria lúcia",
-      tipo: "mãe da noiva"
-    },
-    {
-      id:2,
-      nome:"Jéssica",
-      tipo: "Convidada"
-    },
-    {
-      id:3,
-      nome:"Priscila",
-      tipo: "Madrinha"
-    }
-  ]
-  // variavel começa com minusculo e não usar tipos genericos de preferencias
-  GroomGuests: Object[] = [];
- 
-  // colocar o construtor no topo
+
+export class InvitationListPage implements OnInit {
   constructor() { }
-  // Colocar no topo
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
+ jsonData = data as Guest[];
+
+   translateData = (t:String) => { 
+    switch(t){
+        case 'guest':
+        return 'Convidado'
+        break;
+        case 'bestMan':
+        return 'Padrinho'
+        break;
+        case 'brideMaid':
+        return 'Madrinha'
+        break;
+        case 'brideMother':
+        return 'Mãe da noiva'
+        break;
+        case 'brideFather':
+        return 'Pai da noiva'
+        break;
+        case 'groomFather':
+        return 'Pai do noivo'
+        break;
+        case 'groomMother':
+        return 'Pai do noivo'
+        break;
+        default:
+        return 'Escolha um tipo de convidado';
+        break;
+    }
+   }
+
+   brideGuests:Guest[] = this.jsonData.filter((d)=> d.bog === 'bride')
+   groomGuests:Guest[] = this.jsonData.filter((d)=> d.bog === 'groom')
+   
+
+ // ESSE É SÓ UM EXEMPLO
+ // AQUI SERÁ UM GET DA API
+ /* brideGuests: Guest[] = [
+    {
+      id: '10',
+      name: 'Isabela Santos',
+      type: 'brideMother',
+      email: 'isabela.santos@example.com',
+      phone: 11911111111,
+      photo: 'https://example.com/isabela.jpg',
+      bog:'bride'
+    },
+    {
+      id: '11',
+      name: 'Rafaela Oliveira',
+      type: 'brideMaid',
+      email: 'rafaela.oliveira@example.com',
+      phone: 21922222222,
+      bog:'bride'
+    },
+    {
+      id: '12',
+      name: 'Lucas Mendes',
+      type: 'bestMan',
+      email: 'lucas.mendes@example.com',
+      phone: 31933333333,
+      photo: 'https://example.com/lucas.jpg',
+      bog:'bride'
+    },
+    {
+      id: '13',
+      name: 'Camila Costa',
+      type: 'guest',
+      email: 'camila.costa@example.com',
+      phone: 41944444444,
+      bog:'bride'
+    },
+    {
+      id: '14',
+      name: 'Gabriel Silva',
+      type: 'guest',
+      email: 'gabriel.silva@example.com',
+      phone: 51955555555,
+      photo: 'https://example.com/gabriel.jpg',
+      bog:'bride'
+    },
+  ];
+  
+  groomGuests: Guest[] = [
+    {
+      id: '1',
+      name: 'Ana Clara',
+      type: 'brideMaid',
+      email: 'ana.clara@example.com',
+      phone: 11999999999,
+      photo: 'https://example.com/ana.jpg',
+      bog:'groom'
+    },
+    {
+      id: '2',
+      name: 'Carlos Eduardo',
+      type: 'guest',
+      email: 'carlos.eduardo@example.com',
+      phone: 21988888888,
+      bog:'groom'
+    },
+    {
+      id: '3',
+      name: 'Fernanda Lima',
+      type: 'guest',
+      email: 'fernanda.lima@example.com',
+      phone: 31977777777,
+      photo: 'https://example.com/fernanda.jpg',
+      bog:'groom'
+    },
+    {
+      id: '4',
+      name: 'Mariana Costa',
+      type: 'groomMother',
+      email: 'mariana.costa@example.com',
+      phone: 41966666666,
+      bog:'groom'
+    },
+    {
+      id: '5',
+      name: 'Ricardo Almeida',
+      type: 'bestMan',
+      email: 'ricardo.almeida@example.com',
+      phone: 51955555555,
+      photo: 'https://example.com/ricardo.jpg',
+      bog:'groom'
+    },
+  ];
+  */
+ 
+ 
 
 }
