@@ -1,13 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>bugetManagement</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <h1 class="title">ORÇAMENTO</h1>
+  <div class="flex center container-separation">
+    <div class="line"></div>
+    <div class="separation"></div>
+    <div class="line"></div>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">bugetManagement</ion-title>
-    </ion-toolbar>
-  </ion-header>
+   <div class="flip-card" (click)="flipCard()" [class.flipped]="isFlipped">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="wave one" [style.top]="waveAnimationDuration + '%'"></div>
+          <h3>Estamos com:</h3>
+          <h1>R$ {{formatNumber(this.userBudget.actualExpense)}}</h1>
+          <h3> / R$ {{formatNumber(this.userBudget.expectedBudget)}} </h3>
+        </div>
+        <div class="flip-card-back">
+          <h3>Faltam</h3>
+          <h1>R$ {{formatNumber(userBudget.moneyToReach)}}</h1>
+          <p>para atingir a meta!</p>
+        </div>
+      </div>
+    </div>
+
+    <ion-card>
+      <ion-list >
+        <ion-item *ngFor="let expense of userExpenses" >
+          <ng-template *ngIf="expense.service; else noService">
+            <p>{{expense.service?.name}}</p>
+            <p>{{expense.service?.category}}</p>
+            <p>{{expense.service?.value}}</p>
+          </ng-template>
+          <ng-template #noService>
+            <p>{{expense.name}}</p>
+            <p>{{expense.category}}</p>
+            <p>{{expense.value}}</p>
+          </ng-template>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <div class="container-button">
+      <ion-button class="button-add-expense">
+        +
+      </ion-button>
+    </div>
+
+  
 </ion-content>
+

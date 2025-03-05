@@ -24,3 +24,33 @@
     --gray-text-color:#737373;
     --gray-tabs-color:#647D8C;
 }
+
+
+@font-face {
+    font-family: 'text-font';
+    src: url('/assets/fonts/Lato-Thin.ttf');
+    font-weight: 300; /* Light */
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'text-font';
+    src: url('/assets/fonts/Lato-Regular.ttf');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+  }
+  
+  
+  @font-face {
+    font-family: 'text-font';
+    src: url('/assets/fonts/Lato-Bold.ttf');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'text-font';
+    src: url('/assets/fonts/Lato-Black.ttf');
+    font-weight: 900; /* Black */
+    font-style: normal;
+  }
