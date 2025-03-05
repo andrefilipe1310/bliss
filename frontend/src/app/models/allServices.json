@@ -1,0 +1,75 @@
+[
+    {
+      "id": "1",
+      "name": "Buffet Completo para Casamento",
+      "link": "https://exemplo.com/buffet",
+      "value": 12000,
+      "category": "buffet",
+      "email": "buffet@exemplo.com",
+      "phone": 11987654321
+    },
+    {
+      "id": "2",
+      "name": "Aluguel de Local para Cerimônia",
+      "link": "https://exemplo.com/local-rent",
+      "value": 8000,
+      "category": "localRent",
+      "email": "local@exemplo.com",
+      "phone": 11912345678
+    },
+    {
+      "id": "3",
+      "name": "Decoração Temática para Festas",
+      "value": 5000,
+      "category": "decoration",
+      "email": "decoracao@exemplo.com"
+    },
+    {
+      "id": "4",
+      "name": "Bolo de Casamento Personalizado",
+      "link": "https://exemplo.com/bolo",
+      "value": 3000,
+      "category": "cake",
+      "email": "bolo@exemplo.com",
+      "phone": 11955554444
+    },
+    {
+      "id": "5",
+      "name": "Lembrancinhas para Convidados",
+      "value": 2000,
+      "category": "gifts",
+      "email": "lembrancinhas@exemplo.com"
+    },
+    {
+      "id": "6",
+      "name": "Vestido de Noiva Sob Medida",
+      "link": "https://exemplo.com/vestido",
+      "value": 7000,
+      "category": "clothing",
+      "email": "vestido@exemplo.com",
+      "phone": 11966667777
+    },
+    {
+      "id": "7",
+      "name": "Filmagem Profissional do Casamento",
+      "value": 10000,
+      "category": "filmMaking",
+      "email": "filmagem@exemplo.com"
+    },
+    {
+      "id": "8",
+      "name": "Beleza da Noiva (Maquiagem e Cabelo)",
+      "value": 1500,
+      "category": "brideBeauty",
+      "email": "beleza@exemplo.com"
+    },
+    {
+      "id": "9",
+      "name": "Pacote de Lua de Mel",
+      "link": "https://exemplo.com/lua-de-mel",
+      "value": 20000,
+      "category": "honeyMoon",
+      "email": "luademel@exemplo.com",
+      "phone": 11988889999
+    }
+  ]
