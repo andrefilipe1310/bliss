@@ -1,49 +1,73 @@
 
 <ion-content [fullscreen]="true">
+
+  <h1 class="title-page">MESAS</h1>
+  <div class="flex center container-separation">
+    <div class="line"></div>
+    <div class="separation"></div>
+    <div class="line"></div>
+  </div>
+  
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let table of allTables" >
-        <ion-button class="tables" [id]="'open-modal-table' + table.id">
-          {{ table.name }}
-        </ion-button>
+      <ion-col size="4" *ngFor="let table of allTables">
+        <ion-button class="button-table" [id]="'open-table-'+table.id">{{table.name}}</ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button class="button-table" id="new-table-add">+</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
 </ion-content>
 
-<ion-modal id="example-modal" #modal [trigger]="'open-modal-table' + table.id" *ngFor="let table of allTables">
+<ion-modal id="example-modal" #modal [trigger]="'open-table-'+table.id" *ngFor="let table of allTables">
   <ng-template>
     <div class="wrapper">
-      <h1 class="title-table">{{table.name}}</h1>
-      <ion-item class="container-input-name">
-        <ion-label position="stacked">Nome</ion-label>
-        <ion-input value="{{table.name}}"></ion-input>
-      </ion-item>
-      <ion-list class="guest-list-on-table" >
-        <div *ngFor="let guest of table.selectedGuests" class="guest-on-table">
-          <p>{{ guest.name }}</p>
-          <p>{{ translateData(guest.type) }}</p>
-          <ion-button (click)="removeFromTable(guest,table)" class="button-remove-guest">x</ion-button>
-        </div>
-      </ion-list>
-
-      <div class="guest-container">
+        <h1>configurar mesa</h1>
+        <ion-input labelPlacement="stacked" label="nome" fill="outline" [(ngModel)]="table.name"></ion-input>
+        <ion-list>
+          <ion-item *ngFor="let guest of table.selectedGuests">
+            <p>{{guest.name}}</p>
+            <ion-button> x </ion-button>
+          </ion-item>
+        </ion-list>
+        <div>
         <ion-grid>
           <ion-row>
-            <ion-col class="guest" size="3" *ngFor="let guest of guestDataJson">
-              <ion-button (click)="addToTable(guest,table)" class="{{changeGuestButtonStyle(guest,table)}}">
-                {{ guest.name[0] }}
-              </ion-button>
-              <ion-label>{{ guest.name }}</ion-label>
+            <ion-col size="2" *ngFor="let guest of allGuests">
+              <ion-button (click)="addNewTableGuest(guest)">{{guest.name[0]}}</ion-button>
+              <ion-label>{{guest.name}}</ion-label>
             </ion-col>
-        </ion-row>
+          </ion-row>
         </ion-grid>
       </div>
-      <div class="button-container">
-        <ion-button class="send-button">Salvar</ion-button>
-        <ion-button class="send-button">Excluir</ion-button>
+    </div>
+  </ng-template>
+</ion-modal>
+
+<ion-modal id="example-modal" #modal trigger="new-table-add">
+  <ng-template>
+    <div class="wrapper">
+      <h1>NOVA MESA</h1>
+      <ion-input labelPlacement="stacked" label="nome" fill="outline" [(ngModel)]="newTable.name"></ion-input>
+      <ion-list>
+        <ion-item *ngFor="let guest of newTable.selectedGuests">
+          <p>{{guest.name}}</p>
+          <ion-button> x </ion-button>
+        </ion-item>
+      </ion-list>
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2" *ngFor="let guest of allGuests">
+              <ion-button (click)="addNewTableGuest(guest)">{{guest.name[0]}}</ion-button>
+              <ion-label>{{guest.name}}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </div>
+      <ion-button (click)="saveNewGuest()">SALVAR</ion-button>
     </div>
   </ng-template>
 </ion-modal>

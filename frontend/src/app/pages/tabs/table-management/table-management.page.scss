@@ -1,179 +1,80 @@
-@font-face {
-  font-family: 'MainFont';
-  src: url('../../../../assets/fonts/Main-Font.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+
+ion-content{
+  --padding-top: 6rem
 }
 
-
-ion-content {
-    --padding-top: 6rem;
-  }
-  
-  ion-list {
-    background: transparent;
-  }
-  
-  ion-col{
-    text-align: center;
-  }
-  
-  ion-label {
-    font-size: 1.2em;
-    color: #333;
-  }
-
-  .tables{
-    --background: ;
-    height: 6rem;
-    width: 6rem;
-    --border-radius: 20px;
-    --border-color: var(--secound-color);
-    --border-style: solid;
-    --border-width: 1px;
-    --background: none;
-    color: var(--gray-text-color)
-    
-  }
-
-  .guest-list-on-table{
-      width: 90%;
-      max-height: 10rem;
-      min-height: 5rem;
-      overflow-y: auto;
-      display: block;
-      justify-self: center;
-
-  }
-  .guest-on-table{
-    width: 100%;
-    height: 3rem;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center;
-    border: 1px solid var(--secound-color);
-    border-radius: 5px;
-    position: relative; 
-    padding-right: 5rem;
-    padding-left: 1rem;
-  }
-  .button-remove-guest{
-    align-self: end;
-    position: absolute;
-    right: 0px;
-    height: 100%;
-    --background: ;
-    --color: var(--secound-color);
-    --box-shadow: none !important;
-    border-left: 1px solid ;
-    margin: 0px;
-  }
-
-  .guest-container{
-    box-shadow: inset 0px 0px 8px rgb(75, 75, 75) ;
-    width: 90%;
-    padding: 1rem 1rem;
-    justify-self: center;
-    margin-top: 1rem;
-    border-radius: 10px;
-    margin-bottom: 1.5rem;
-    max-height: 15rem;
-    min-height: 5rem;
-    overflow-y: auto;
-
-    ion-button{
-      width: 4rem;
-      height: 4rem;
-      --border-radius: 50px;
-      --background: ;
-      border-radius: 50px;
-      border: 1px solid var(--secound-color);
-      color: var(--secound-color);
-      font-family: 'MainFont';
-      font-size: 1.5rem;
-    }
-    
-}
-
-.taken-guest{
-  border: 1px solid var(--gray-text-color) !important;
-  color: var(--gray-text-color) !important;
-  transition: 1s;
-}
-
-.title-table{
-  font-family: 'MainFont';
-  font-size: 2rem;
+.title-page{
+  font-family: 'Mainfont';
   color: var(--secound-color);
+  justify-self: center;
+  font-size: 2.5rem;
+}
+.container-separation{
+  height: 15px;
+  width: 100%;
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+
+  ion-icon{
+      font-size: 1.5rem;
+      color: var(--secound-color);
+  }
+  .line{
+      width: 30%;
+      height: 1px;
+      background-color: var(--secound-color);
+  }
+  .separation{
+      width: 5px;
+      height: 5px;
+      background-color: red;
+      rotate: 45deg;
+      background-color: var(--secound-color);
+  }
+}
+
+ion-col{
   text-align: center;
 }
 
-.button-container{
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-
-  ion-button:nth-of-type(1){
-    height: 4rem;
-    width: 8rem;
-    border-radius: 15px;
-    --border-radius: 15px;
-  }
-  ion-button:nth-of-type(2){
-    height: 4rem;
-    width: 8rem;
-    --background: ;
-    color: var(--gray-text-color);
-    border: 1px solid var(--gray-text-color);
-    border-radius: 15px;
-    --border-radius: 15px;
-  }
+.button-table{
+  width: 6rem;
+  height: 6rem;
+  border-radius: 20px;
+  --border-radius:20px;
+  border: 1px solid var(--secound-color);
+  --background: ;
+  color: var(--secound-color);
+  font-family: 'text-font';
+  font-weight: 900;
 }
 
-.container-input-name{
-  margin-bottom: 1rem;
+//from ionic
 
-  ion-input{
-    border: 1px solid var(--secound-color);
-    border-radius: 5px; 
-    --padding-start: 20px;
-    --padding-end: 20px; 
-    margin-top: 0.5rem;
-}
-ion-input:hover{
-  border: 2px solid var(--secound-color);
-}
-  ion-label{
-    margin-left: 1rem;
-    font-size: 1.2rem;
-}
+ion-modal#example-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 }
 
-  //from ionic
+ion-modal#example-modal h1 {
+  margin: 20px 20px 10px 20px;
+}
 
-  ion-modal#example-modal {
-    --width: fit-content;
-    --min-width: 250px;
-    --height: fit-content;
-    --border-radius: 6px;
-    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
-  }
-  
-  ion-modal#example-modal h1 {
-    margin: 20px 20px 10px 20px;
-  }
-  
-  ion-modal#example-modal ion-icon {
-    margin-right: 6px;
-  
-    width: 48px;
-    height: 48px;
-  
-    padding: 4px 0;
-  
-    color: #aaaaaa;
-  }
-  
-  ion-modal#example-modal .wrapper {
-    margin-bottom: 10px;
-  }
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
+
+  width: 48px;
+  height: 48px;
+
+  padding: 4px 0;
+
+  color: #aaaaaa;
+}
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+}

@@ -13,9 +13,16 @@ import {
   IonSelect, 
   IonSelectOption
 } from '@ionic/angular/standalone';
-import { Guest, Table } from 'src/app/models/pages-interfaces.model';
-import data from '../../../models/tablesDataTest.json' 
-import guestData from '../../../models/testData.json' 
+import { Guest, Table, TableGuest } from 'src/app/models/pages-interfaces.model';
+import tableGuestsExamples from '../../../models/tableGuestsExamples.json'
+
+/*
+ Table {
+id:string,
+name:string,
+selectedGuests:TableGuest[]
+
+}*/
 
 @Component({
   selector: 'app-table-management',
@@ -26,70 +33,46 @@ import guestData from '../../../models/testData.json'
 export class TableManagementPage implements OnInit {
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log()
+   }
 
-  jsonData = data as Table[]
-  guestDataJson = guestData as Guest[]
+  allTables:Table[] = []
 
-  allTables:Table[] = this.jsonData
-  
+  allGuests = tableGuestsExamples as TableGuest[]
 
-  addToTable = (g:Guest, t:Table) => {
-     const idToFind = g.id
-      const idToReserach = t.selectedGuests.find(guest=>guest.id===idToFind)
-    if (idToReserach){
-      console.log('guest aready added')
+  newTable:Table = {
+    id:'',
+    name:'',
+    selectedGuests:[]
+  }
+
+
+
+  saveNewGuest = () =>{
+    this.newTable.id = 'g'+ ((Math.floor(Math.random()*(1000-1)+1)).toString()).toString();
+
+    if(this.newTable.name !== ''){
+      this.allTables.push(this.newTable)
+      this.newTable = {
+        id:'',
+        name:'',
+        selectedGuests:[]
+      }
     }else{
-      t.selectedGuests.push(g)
+      console.log('need name to save')
+    }
+    
+  }
+
+  addNewTableGuest = (g:TableGuest) =>{
+    const findGuest = this.newTable.selectedGuests.find(guest => g.id === guest.id)
+    if (findGuest){
+      console.log('aready added')
+    }else{
+      this.newTable.selectedGuests.push(g)
       console.log('added')
     }
   }
-
-  removeFromTable = (g:Guest,t:Table) => {
-      const newTableGuests = t.selectedGuests.filter(guest=>guest.id !== g.id)
-      t.selectedGuests = newTableGuests
-      console.log('removed')
-  }
   
-  translateData = (t:String) => { 
-    switch(t){
-        case 'guest':
-        return 'Convidado'
-        break;
-        case 'bestMan':
-        return 'Padrinho'
-        break;
-        case 'brideMaid':
-        return 'Madrinha'
-        break;
-        case 'brideMother':
-        return 'Mãe da noiva'
-        break;
-        case 'brideFather':
-        return 'Pai da noiva'
-        break;
-        case 'groomFather':
-        return 'Pai do noivo'
-        break;
-        case 'groomMother':
-        return 'Pai do noivo'
-        break;
-        default:
-        return 'Escolha um tipo de convidado';
-        break;
-    }
-   }
-
-   changeGuestButtonStyle= (g:Guest,t:Table) => {
-      const idToFind = g.id
-      const idToReserach = t.selectedGuests.find(guest=>guest.id===idToFind)
-
-      if(idToReserach){
-        return "taken-guest"
-      }else{
-        return ""
-      }
-
-   }
-
 }

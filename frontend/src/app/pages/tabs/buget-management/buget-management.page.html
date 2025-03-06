@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [fullscreen]="true">
   <h1 class="title">ORÇAMENTO</h1>
   <div class="flex center container-separation">
     <div class="line"></div>
@@ -22,22 +22,66 @@
       </div>
     </div>
 
-    <ion-card>
-      <ion-list >
-        <ion-item *ngFor="let expense of userExpenses" >
-          <ng-template *ngIf="expense.service; else noService">
-            <p>{{expense.service?.name}}</p>
-            <p>{{expense.service?.category}}</p>
-            <p>{{expense.service?.value}}</p>
-          </ng-template>
+      <ion-list class="list-of-expenses" >
+        <ion-button class="button-expense" [id]="'open-modal-expense-' + expense.id" *ngFor="let expense of userExpenses">
+          <ng-container *ngIf="expense.service; else noService">
+            <div class="inside-content">
+              <p>{{expense.service.name}}</p>
+              <p>{{expense.service.category}}</p>
+              <p>R$ {{expense.service.value}}</p>
+            </div>
+          </ng-container>
           <ng-template #noService>
-            <p>{{expense.name}}</p>
-            <p>{{expense.category}}</p>
-            <p>{{expense.value}}</p>
+            <div class="inside-content">
+              <p>{{expense.name}}</p>
+              <p>{{expense.category}}</p>
+              <p>R$ {{expense.value}}</p>
+            </div>
           </ng-template>
-        </ion-item>
+        </ion-button>
       </ion-list>
-    </ion-card>
+
+<ng-container *ngFor="let expense of userExpenses">
+      <ion-modal id="dialog-modal" #modal [trigger]="'open-modal-expense-' + expense.id" >
+        <ng-template>
+          <div class="wrapper">
+            <ng-container *ngIf="expense.service; else noService">
+              <div>
+                <ion-label>Nome</ion-label>
+                <ion-input value="{{expense.service.name}}"></ion-input>
+              </div>
+              <div>
+                <ion-label>Categoria</ion-label>
+                <ion-input value="{{expense.service.category}}"></ion-input>
+              </div>
+              <div>
+                <ion-label>Valor</ion-label>
+                <ion-input value="{{expense.service.value}}"></ion-input>
+              </div>
+              <ion-button>Excluir</ion-button>
+            </ng-container>
+
+            <ng-template #noService>
+              <div>
+              <ion-label>Nome</ion-label>
+                <ion-input value="{{expense.name}}"></ion-input>
+              </div>
+              <div>
+                <ion-label>Categoria</ion-label>
+                <ion-input value="{{expense.category}}"></ion-input>
+              </div>
+              <div>
+                <ion-label>Valor</ion-label>
+                <ion-input value="{{expense.value}}"></ion-input>
+              </div>
+              <ion-button>Excluir</ion-button>
+            </ng-template>
+
+          </div>
+        </ng-template>
+      </ion-modal>
+</ng-container>
+
 
     <div class="container-button">
       <ion-button class="button-add-expense">

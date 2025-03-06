@@ -9,9 +9,9 @@ type PersonType =
   | "groomFather";
   
 export interface Service{
-id:String,
-name:String,
-link?:String,
+id:string,
+name:string,
+link?:string,
 value:Number
 category:String,
 email:String
@@ -19,27 +19,32 @@ phone?:Number
 }
 
 export interface Expense {
-id:String,
-name:String,
-category:String,
-value:Number
+id:string,
+name:string,
+category:string,
+value:number
 service?:Service
 }
 
 export interface Table {
-id:String,
-name:String,
-selectedGuests:Guest[]
+id:string,
+name:string,
+selectedGuests:TableGuest[]
 }
 
 export interface Guest {
-id:String,
-name:String,
+id:string,
+name:string,
 type: "guest" | "brideMaid" | "bestMan" | "brideMother" | "brideFather" | "groomFather" | "groomMother";
-email:String,
-phone:Number
-photo?:String
+email:string,
+phone:number
+photo?:string
 bog:'bride'| 'groom'
+}
+
+export interface TableGuest{
+  id:string,
+  name:string
 }
 
     
