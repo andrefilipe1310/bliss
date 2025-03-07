@@ -21,27 +21,49 @@
 
 </ion-content>
 
-<ion-modal id="example-modal" #modal [trigger]="'open-table-'+table.id" *ngFor="let table of allTables">
+<ion-modal id="example-modal" #modal [trigger]="'open-table-'+table.id" *ngFor="let table of allTables" backdropDismiss="false" (ionModalDidPresent)="saveAntData(table)">
   <ng-template>
     <div class="wrapper">
-        <h1>configurar mesa</h1>
+        <h1 class="title-table">CONFIGURAR MESA</h1>
         <ion-input labelPlacement="stacked" label="nome" fill="outline" [(ngModel)]="table.name"></ion-input>
-        <ion-list>
-          <ion-item *ngFor="let guest of table.selectedGuests">
-            <p>{{guest.name}}</p>
-            <ion-button> x </ion-button>
+        <ion-list class="list-guest-in-table">
+          
+          <ion-item *ngFor="let guest of table.selectedGuests" class="guest-in-table">
+            <div>
+              <p>{{guest.name}}</p>
+              <p>{{translateData(guest.type)}}</p>
+              <ion-button (click)="deleteGuestOnTable(guest,table)"> x </ion-button>
+            </div>
           </ion-item>
         </ion-list>
-        <div>
+        <div class="all-guest-button-container">
         <ion-grid>
           <ion-row>
-            <ion-col size="2" *ngFor="let guest of allGuests">
-              <ion-button (click)="addNewTableGuest(guest)">{{guest.name[0]}}</ion-button>
+            <ion-col size="3" *ngFor="let guest of allGuests">
+              <ion-button (click)="addNewTableGuest(guest,table)" class="{{changeStyleGuestButton(guest,table)}}">{{guest.name[0]}}</ion-button>
               <ion-label>{{guest.name}}</ion-label>
             </ion-col>
           </ion-row>
         </ion-grid>
       </div>
+      <div class="container-button">
+        <ion-button class="save-button" (click)="saveTable(modal)">
+          SALVAR
+        </ion-button>
+        <ion-button class="cancel-delete-button" id="present-alert">
+          Excluir
+        </ion-button>
+        <ion-button class="cancel-delete-button"  (click)="exitTable(modal,table)">
+          Cancelar
+        </ion-button>
+      </div>
+
+      <ion-alert
+    trigger="present-alert"
+    header="Quer mesmo excluir a mesa?"
+    [buttons]="alertButtons"
+    (didDismiss)="setResult($event,table)"
+    ></ion-alert>
     </div>
   </ng-template>
 </ion-modal>
@@ -49,25 +71,30 @@
 <ion-modal id="example-modal" #modal trigger="new-table-add">
   <ng-template>
     <div class="wrapper">
-      <h1>NOVA MESA</h1>
-      <ion-input labelPlacement="stacked" label="nome" fill="outline" [(ngModel)]="newTable.name"></ion-input>
-      <ion-list>
-        <ion-item *ngFor="let guest of newTable.selectedGuests">
-          <p>{{guest.name}}</p>
-          <ion-button> x </ion-button>
+      <h1 class="title-table">NOVA MESA</h1>
+      <ion-input labelPlacement="stacked" label="nome" fill="outline" [(ngModel)]="newTable.name" class="input-table"></ion-input>
+      <ion-list class="list-guest-in-table">
+        <ion-item *ngFor="let guest of newTable.selectedGuests" class="guest-in-table">
+          <div>
+            <p>{{guest.name}}</p>
+            <p>{{guest.type}}</p>
+            <ion-button> x </ion-button>
+          </div>
         </ion-item>
       </ion-list>
-      <div>
+      <div class="all-guest-button-container">
         <ion-grid>
           <ion-row>
-            <ion-col size="2" *ngFor="let guest of allGuests">
-              <ion-button (click)="addNewTableGuest(guest)">{{guest.name[0]}}</ion-button>
+            <ion-col size="3" *ngFor="let guest of allGuests">
+              <ion-button (click)="addNewTableGuest(guest,newTable)" class="{{changeStyleGuestButton(guest,newTable)}}">{{guest.name[0]}}</ion-button>
               <ion-label>{{guest.name}}</ion-label>
             </ion-col>
           </ion-row>
         </ion-grid>
       </div>
-      <ion-button (click)="saveNewGuest()">SALVAR</ion-button>
+      <div class="container-button" id="new-table">
+        <ion-button (click)="saveNewGuest()" class="save-button">SALVAR</ion-button>
+      </div>
     </div>
   </ng-template>
 </ion-modal>

@@ -44,7 +44,8 @@ bog:'bride'| 'groom'
 
 export interface TableGuest{
   id:string,
-  name:string
+  name:string,
+  type: "guest" | "brideMaid" | "bestMan" | "brideMother" | "brideFather" | "groomFather" | "groomMother";
 }
 
     

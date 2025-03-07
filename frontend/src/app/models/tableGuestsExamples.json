@@ -1,42 +1,54 @@
-[
-    {
-        "id": "10",
-        "name": "Isabela Santos"
-    },
-    {
-        "id": "11",
-        "name": "Rafaela Oliveira"
-    },
-    {
-        "id": "12",
-        "name": "Lucas Mendes"
-    },
-    {
-        "id": "13",
-        "name": "Camila Costa"
-    },
-    {
-        "id": "14",
-        "name": "Gabriel Silva"
-    },
-    {
+
+ [
+      {
         "id": "1",
-        "name": "Ana Clara"
-    },
-    {
+        "name": "Alice",
+        "type": "guest"
+      },
+      {
         "id": "2",
-        "name": "Carlos Eduardo"
-    },
-    {
+        "name": "Bob",
+        "type": "brideMaid"
+      },
+      {
         "id": "3",
-        "name": "Fernanda Lima"
-    },
-    {
+        "name": "Charlie",
+        "type": "bestMan"
+      },
+      {
         "id": "4",
-        "name": "Mariana Costa"
-    },
-    {
+        "name": "Diana",
+        "type": "brideMother"
+      },
+      {
         "id": "5",
-        "name": "Ricardo Almeida"
-    }
-]
+        "name": "Edward",
+        "type": "brideFather"
+      },
+      {
+        "id": "6",
+        "name": "Fiona",
+        "type": "groomMother"
+      },
+      {
+        "id": "7",
+        "name": "George",
+        "type": "groomFather"
+      },
+      {
+        "id": "8",
+        "name": "Hannah",
+        "type": "guest"
+      },
+      {
+        "id": "9",
+        "name": "Ian",
+        "type": "brideMaid"
+      },
+      {
+        "id": "10",
+        "name": "Julia",
+        "type": "bestMan"
+      }
+    
+    ]
