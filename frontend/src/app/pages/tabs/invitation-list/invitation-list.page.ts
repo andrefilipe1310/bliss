@@ -11,13 +11,15 @@ import {
   IonTitle,
   IonToolbar,
   IonSelect, 
-  IonSelectOption
+  IonSelectOption,
+  IonAlert
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
 import { personCircle } from 'ionicons/icons';
-import { Guest } from 'src/app/models/pages-interfaces.model';
+import { Guest, PersonType } from 'src/app/models/pages-interfaces.model';
 import data from '../../../models/testData.json'
+import type { OverlayEventDetail } from '@ionic/core';
 
 
 @Component({
@@ -65,103 +67,184 @@ export class InvitationListPage implements OnInit {
 
    brideGuests:Guest[] = this.jsonData.filter((d)=> d.bog === 'bride')
    groomGuests:Guest[] = this.jsonData.filter((d)=> d.bog === 'groom')
+   newGuestData:Guest = {
+    id:"",
+    name:"",
+    type: "guest",
+    email:"",
+    phone: null,
+    bog:'bride'
+   }
+   oldGuestDataType:PersonType = "guest"
+   errorMessageEmail:string = ''
+   errorMessageName:string =''
+   errorMessagePhone:string = ''
    
 
- // ESSE É SÓ UM EXEMPLO
- // AQUI SERÁ UM GET DA API
- /* brideGuests: Guest[] = [
-    {
-      id: '10',
-      name: 'Isabela Santos',
-      type: 'brideMother',
-      email: 'isabela.santos@example.com',
-      phone: 11911111111,
-      photo: 'https://example.com/isabela.jpg',
-      bog:'bride'
-    },
-    {
-      id: '11',
-      name: 'Rafaela Oliveira',
-      type: 'brideMaid',
-      email: 'rafaela.oliveira@example.com',
-      phone: 21922222222,
-      bog:'bride'
-    },
-    {
-      id: '12',
-      name: 'Lucas Mendes',
-      type: 'bestMan',
-      email: 'lucas.mendes@example.com',
-      phone: 31933333333,
-      photo: 'https://example.com/lucas.jpg',
-      bog:'bride'
-    },
-    {
-      id: '13',
-      name: 'Camila Costa',
-      type: 'guest',
-      email: 'camila.costa@example.com',
-      phone: 41944444444,
-      bog:'bride'
-    },
-    {
-      id: '14',
-      name: 'Gabriel Silva',
-      type: 'guest',
-      email: 'gabriel.silva@example.com',
-      phone: 51955555555,
-      photo: 'https://example.com/gabriel.jpg',
-      bog:'bride'
-    },
-  ];
+
+   
   
-  groomGuests: Guest[] = [
+
+   saveOldDataGuestType = (g:Guest) =>{
+     this.oldGuestDataType = g.type
+   }
+   cancelModalGuest = (g:Guest,m:IonModal)=>{
+    g.type = this.oldGuestDataType
+    this.oldGuestDataType = 'guest'
+    m.dismiss()
+   }
+   //LOGICA DE SALVAR OS DADOS NO BACK AQUI
+   saveGuestData = (g:Guest,m:IonModal) =>{
+    m.dismiss()
+   }
+   deleteGuest =() =>{
+    console.log('logica do back aqui')
+   }
+
+   validateEmail() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!this.newGuestData.email) {
+      return false
+    } else if (!emailRegex.test(this.newGuestData.email)) {
+      return false
+    } else {
+      return true
+    }
+  }
+
+  addNewGuestBride= (m:IonModal) =>{
+    const isNameValid = !!this.newGuestData.name;
+    const isEmailValid = this.validateEmail();
+    const isPhoneValid = this.newGuestData.phone?.toString().length === 11;
+  
+    // Mensagens de erro
+    this.errorMessageName = isNameValid ? '' : 'Insira um nome válido';
+    this.errorMessageEmail = isEmailValid ? '' : 'Por favor, insira um email válido.';
+    this.errorMessagePhone = isPhoneValid ? '' : 'Insira um número válido';
+   
+    if (isNameValid && isEmailValid && isPhoneValid) {
+      // Gera um ID único
+      this.newGuestData.id = 'g' + Math.floor(Math.random() * (1000 - 1) + 1).toString();
+  
+      // Define o tipo de convidado
+      this.newGuestData.bog = 'bride';
+  
+      // Adiciona o novo convidado à lista
+      this.brideGuests.push(this.newGuestData);
+  
+      // Reseta o objeto newGuestData
+      this.newGuestData = {
+        id: "",
+        name: "",
+        type: "guest",
+        email: "",
+        phone: null,
+        bog: 'bride'
+      };
+  
+      // Limpa as mensagens de erro
+      this.errorMessageName = '';
+      this.errorMessageEmail = '';
+      this.errorMessagePhone = '';
+  
+      // Fecha o modal
+      m.dismiss();
+    } else {
+      console.log('Dados inválidos ou faltando.');
+    }
+  }
+
+   addNewGuestGroom= (m:IonModal) =>{
+    
+    const isNameValid = !!this.newGuestData.name;
+    const isEmailValid = this.validateEmail();
+    const isPhoneValid = this.newGuestData.phone?.toString().length === 11;
+  
+    // Mensagens de erro
+    this.errorMessageName = isNameValid ? '' : 'Insira um nome válido';
+    this.errorMessageEmail = isEmailValid ? '' : 'Por favor, insira um email válido.';
+    this.errorMessagePhone = isPhoneValid ? '' : 'Insira um número válido';
+   
+    if (isNameValid && isEmailValid && isPhoneValid) {
+      // Gera um ID único
+      this.newGuestData.id = 'g' + Math.floor(Math.random() * (1000 - 1) + 1).toString();
+  
+      // Define o tipo de convidado
+      this.newGuestData.bog = 'groom';
+  
+      // Adiciona o novo convidado à lista
+      this.groomGuests.push(this.newGuestData);
+  
+      // Reseta o objeto newGuestData
+      this.newGuestData = {
+        id: "",
+        name: "",
+        type: "guest",
+        email: "",
+        phone: null,
+        bog: 'bride'
+      };
+  
+      // Limpa as mensagens de erro
+      this.errorMessageName = '';
+      this.errorMessageEmail = '';
+      this.errorMessagePhone = '';
+  
+      // Fecha o modal
+      m.dismiss();
+    } else {
+      console.log('Dados inválidos ou faltando.');
+    }
+  }
+
+  closeModalNewGuest = (m:IonModal)=>{
+    this.newGuestData = {
+      id:"",
+      name:"",
+      type: "guest",
+      email:"",
+      phone: null,
+      bog:'bride'
+     }
+     this.errorMessageEmail = ''
+     this.errorMessageName = ''
+     this.errorMessagePhone = ''
+    m.dismiss();
+  }
+
+  public alertButtons = [
     {
-      id: '1',
-      name: 'Ana Clara',
-      type: 'brideMaid',
-      email: 'ana.clara@example.com',
-      phone: 11999999999,
-      photo: 'https://example.com/ana.jpg',
-      bog:'groom'
+      text: 'Não',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
     },
     {
-      id: '2',
-      name: 'Carlos Eduardo',
-      type: 'guest',
-      email: 'carlos.eduardo@example.com',
-      phone: 21988888888,
-      bog:'groom'
-    },
-    {
-      id: '3',
-      name: 'Fernanda Lima',
-      type: 'guest',
-      email: 'fernanda.lima@example.com',
-      phone: 31977777777,
-      photo: 'https://example.com/fernanda.jpg',
-      bog:'groom'
-    },
-    {
-      id: '4',
-      name: 'Mariana Costa',
-      type: 'groomMother',
-      email: 'mariana.costa@example.com',
-      phone: 41966666666,
-      bog:'groom'
-    },
-    {
-      id: '5',
-      name: 'Ricardo Almeida',
-      type: 'bestMan',
-      email: 'ricardo.almeida@example.com',
-      phone: 51955555555,
-      photo: 'https://example.com/ricardo.jpg',
-      bog:'groom'
+      text: 'Sim',
+      role: 'confirm',
+      handler: () => {
+        console.log('Alert confirmed');
+      },
     },
   ];
-  */
- 
- 
+  setResult(event: CustomEvent<OverlayEventDetail>, g:Guest) {
+      if (event.detail.role === 'confirm'){
+        if(g.bog === 'bride'){
+          this.brideGuests = this.brideGuests.filter(guest=>guest.id !== g.id) 
+          this.deleteGuest()
+          console.log(`Dismissed with role: ${event.detail.role}`);
+        }else if(g.bog === 'groom' ) {
+          this.groomGuests = this.groomGuests.filter(guest=>guest.id !== g.id) 
+          this.deleteGuest()
+          console.log(`Dismissed with role: ${event.detail.role}`);
+        }
+        
+      }else{
+        console.log(`Dismissed with role: ${event.detail.role}`);
+      }
+      
+    }
 
 }

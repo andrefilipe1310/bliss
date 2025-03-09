@@ -259,6 +259,12 @@ ion-label{
     }
 }
 
+ion-text{
+    display: block; /* Garante que o ion-text se comporte como um bloco */
+    width: 100%;
+    text-align: center;
+    margin-top: 5px
+}
 
 //styled from ionic
 

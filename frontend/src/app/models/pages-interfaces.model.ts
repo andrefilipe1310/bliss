@@ -1,5 +1,5 @@
 
-type PersonType = 
+export type PersonType = 
   | "brideMother" 
   | "brideMaid" 
   | "bestMan" 
@@ -35,11 +35,11 @@ selectedGuests:TableGuest[]
 export interface Guest {
 id:string,
 name:string,
-type: "guest" | "brideMaid" | "bestMan" | "brideMother" | "brideFather" | "groomFather" | "groomMother";
+type: PersonType,
 email:string,
-phone:number
+phone:number | null
 photo?:string
-bog:'bride'| 'groom'
+bog:'bride'| 'groom' 
 }
 
 export interface TableGuest{

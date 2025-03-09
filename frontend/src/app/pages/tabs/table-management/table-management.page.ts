@@ -60,14 +60,14 @@ export class TableManagementPage implements OnInit {
 
   public alertButtons = [
     {
-      text: 'Cancel',
+      text: 'Não',
       role: 'cancel',
       handler: () => {
         console.log('Alert canceled');
       },
     },
     {
-      text: 'OK',
+      text: 'Sim',
       role: 'confirm',
       handler: () => {
         console.log('Alert confirmed');
@@ -89,7 +89,7 @@ export class TableManagementPage implements OnInit {
 
 
   saveNewGuest = () =>{
-    this.newTable.id = 'g'+ ((Math.floor(Math.random()*(1000-1)+1)).toString()).toString();
+    this.newTable.id = 't'+ ((Math.floor(Math.random()*(1000-1)+1)).toString()).toString();
 
     if(this.newTable.name !== ''){
       this.allTables.push(this.newTable)
@@ -161,6 +161,12 @@ export class TableManagementPage implements OnInit {
         return 'Escolha um tipo de convidado';
         break;
     }
+   }
+
+   ifGuestEmpty = (t:Table) =>{
+      if (t.selectedGuests){
+        return 
+      }
    }
 
   //LOGICA DO BACK DE SALVAR AS ALTERAÇÕES NO BANCO AQUI
