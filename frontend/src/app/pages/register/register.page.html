@@ -1,0 +1,96 @@
+<ion-header [translucent]="true"></ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="login-text">
+      <p>Já possui conta? <a href="/">Faça login</a></p>
+    </div>
+
+    <ion-img
+      class="logo-img"
+      src="../../../assets/images/logo.png"
+      alt="Bliss Logo"
+    ></ion-img>
+
+    <div class="welcome-text">
+      <p>
+        Crie sua conta e comece a planejar o casamento dos seus sonhos de forma
+        prática e organizada.
+      </p>
+    </div>
+
+    <div class="register">
+      <ion-input
+        class="input-name"
+        label="Nome"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Digite seu nome"
+      ></ion-input>
+
+      <ion-input
+        class="input-lastName"
+        label="Sobrenome"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Digite seu sobrenome"
+      ></ion-input>
+
+      <ion-input
+        class="input-email"
+        type="email"
+        label="Email"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Ex: address@email.com"
+        (ionChange)="validateEmail($event)" 
+      ></ion-input>
+      <span class="error-message" id="email-error">Por favor, insira um email válido.</span>
+
+      <ion-input
+        class="input-tel"
+        type="tel"
+        label="Nº de telefone"
+        label-placement="floating"
+        fill="outline"
+        placeholder="(xx) xxxxx-xxxx"
+      ></ion-input>
+
+      <ion-select class="input-country" label="País" label-placement="floating">
+        <ion-select-option value="br">Brasil</ion-select-option>
+      </ion-select>
+
+      <ion-select class="input-state" label="Estado" label-placement="floating">
+        <ion-select-option value="pe">Pernambuco</ion-select-option>
+      </ion-select>
+
+      <ion-select class="input-city" label="Cidade" label-placement="floating">
+        <ion-select-option value="recife">Recife</ion-select-option>
+      </ion-select>
+
+      <ion-input
+        class="input-password"
+        type="password"
+        label="Senha"
+        label-placement="floating"
+        fill="outline"
+        placeholder="********"
+      ></ion-input>
+
+      <ion-input
+        class="input-confirmPassoword"
+        type="password"
+        label="Confirmar Senha"
+        label-placement="floating"
+        fill="outline"
+        placeholder="********"
+      ></ion-input>
+
+    </div>
+
+    <div class="register-button-div">
+      <ion-button>CADASTRAR</ion-button>
+    </div>
+
+  </div>
+</ion-content>

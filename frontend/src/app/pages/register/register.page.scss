@@ -1,0 +1,117 @@
+body {
+  background-color: var(--primary-color);
+}
+
+.container {
+  padding-top: 0.5rem;
+}
+
+.login-text {
+  text-align: center;
+
+  p {
+    font-size: 1rem;
+    color: var(--gray-text-color);
+  }
+
+  a {
+    color: var(--blue-text-color);
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+.logo-img {
+  margin: 0 auto;
+  width: 9.375rem;
+  height: 9.375rem;
+}
+
+.welcome-text {
+  text-align: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    font-size: 2rem;
+    color: var(--secound-color);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--gray-text-color);
+    line-height: 1.5;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.register {
+  justify-self: center;
+  width: 80%;
+
+  ion-input,
+  ion-select {
+    width: 100%;
+    --border-color: var(--secound-color);
+    --color: var(--secound-color);
+    --placeholder-color: var(--gray-text-color);
+    --label-color: var(--secound-color);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 0.8rem;
+    padding-left: 5px;
+  }
+}
+
+.register-button-div {
+  margin-top: 2rem;
+  justify-self: center;
+
+  ion-button {
+    width: 12rem;
+    height: 4rem;
+    font-size: 1.125rem;
+    --background: var(--secound-color);
+    --color: var(--primary-color);
+    border-radius: 2px;
+    font-weight: bold;
+  }
+
+  ion-button:hover{
+    width: 12rem;
+    height: 4rem;
+    font-size: 1.125rem;
+    --background: var(--primary-color);
+    --color: var(--secound-color);
+    border-radius: 2px;
+    font-weight: bold;
+  }
+}
+
+  .input-error {
+    border: 1px solid red;
+    --border-color: red;
+    --color: red;
+  }
+
+  .error-message {
+    color: red; 
+    font-size: 0.875rem; 
+    margin-top: 0.25rem; 
+    display: none; 
+  }
+  .error-message.visible {
+    display: block; 
+  }
+
+
+
+
+
+  
