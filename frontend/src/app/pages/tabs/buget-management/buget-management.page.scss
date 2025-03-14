@@ -159,7 +159,7 @@ ion-content{
 ion-card{
   padding: 0rem;
   overflow: auto;
-  max-height: 15rem;
+  max-height: fit-content;
   display: block
 
   ion-list{
@@ -211,6 +211,21 @@ ion-card{
   box-sizing: border-box;
   overflow-y: scroll;
 }
+
+#modal-services{
+  ion-content{
+    --padding-top: 0px;
+  }
+}
+.container-value-category{
+  display: flex;
+  justify-content: space-evenly;
+  
+  ion-card{
+    width: 40%;
+  }
+}
+
 
 
 //styled from ionic

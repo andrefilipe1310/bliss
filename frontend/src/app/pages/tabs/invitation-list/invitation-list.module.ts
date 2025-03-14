@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { InvitationListPageRoutingModule } from './invitation-list-routing.module';
 
 import { InvitationListPage } from './invitation-list.page';
-import { provideNgxMask } from 'ngx-mask';
+
 
 @NgModule({
   imports: [
@@ -17,8 +17,6 @@ import { provideNgxMask } from 'ngx-mask';
     InvitationListPageRoutingModule,
   ],
   declarations: [InvitationListPage],
-  providers: [
-    provideNgxMask(),
-  ],
+  providers: []
 })
 export class InvitationListPageModule {}

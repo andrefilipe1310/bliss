@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import services from '../../../models/allServices.json'
+import { IonicModule } from '@ionic/angular'; // Importe o IonicModule
+import { IonModal } from '@ionic/angular/common';
+
+
+
 
 interface UserBudget {
   id:number,
@@ -51,6 +56,21 @@ export class BugetManagementPage implements OnInit {
     moneyToReach: 0
   }
 
+  allServices = services as Service[]
+  
+
+  categories: { value: Service['category']; label: string }[] = [
+    { value: 'buffet', label: 'Buffet' },
+    { value: 'localRent', label: 'Aluguel de Local' },
+    { value: 'decoration', label: 'Decoração' },
+    { value: 'cake', label: 'Bolo' },
+    { value: 'gifts', label: 'Presentes' },
+    { value: 'clothing', label: 'Vestuário' },
+    { value: 'filmMaking', label: 'Filmagem' },
+    { value: 'brideBeauty', label: 'Beleza da Noiva' },
+    { value: 'honeyMoon', label: 'Lua de Mel' }
+  ];
+
   userExpenses:Expense[] = [
       {
         id: '1',
@@ -66,121 +86,14 @@ export class BugetManagementPage implements OnInit {
           phone: 11987654321,
         },
       },
-      {
-        id: '2',
-        name: 'Aluguel do Salão de Festas',
-        category: 'localRent',
-        value: 3000,
-        service: {
-          id: 's2',
-          name: 'Salão Espaço Elegante',
-          value: 3000,
-          category: 'localRent',
-          email: 'contato@espacoelegante.com',
-        },
-      },
-      {
-        id: '3',
-        name: 'Decoração com flores naturais',
-        category: 'decoration',
-        value: 2500,
-        service: {
-          id: 's3',
-          name: 'Flores e Cores Decor',
-          value: 2500,
-          category: 'decoration',
-          email: 'contato@floresecores.com',
-          phone: 11912345678,
-        },
-      },
-      {
-        id: '4',
-        name: 'Bolo de Casamento',
-        category: 'cake',
-        value: 1200,
-        service: {
-          id: 's4',
-          name: 'Confeitaria Doce Amor',
-          value: 1200,
-          category: 'cake',
-          email: 'contato@doceamor.com',
-        },
-      },
-      {
-        id: '5',
-        name: 'Lembrancinhas para convidados',
-        category: 'gifts',
-        value: 800,
-        service: {
-          id: 's5',
-          name: 'Lembranças Personalizadas',
-          value: 800,
-          category: 'gifts',
-          email: 'contato@lembrancaspersonalizadas.com',
-        },
-      },
-      {
-        id: '6',
-        name: 'Vestido de Noiva',
-        category: 'clothing',
-        value: 4000,
-        service: {
-          id: 's6',
-          name: 'Ateliê da Noiva',
-          value: 4000,
-          category: 'clothing',
-          email: 'contato@ateliedanoiva.com',
-          phone: 11987651234,
-        },
-      },
-      {
-        id: '7',
-        name: 'Filmagem do Casamento',
-        category: 'filmMaking',
-        value: 3500,
-        service: {
-          id: 's7',
-          name: 'CineCasamentos',
-          value: 3500,
-          category: 'filmMaking',
-          email: 'contato@cinecasamentos.com',
-        },
-      },
-      {
-        id: '8',
-        name: 'Maquiagem e Cabelo',
-        category: 'brideBeauty',
-        value: 600,
-        service: {
-          id: 's8',
-          name: 'Beleza Pura',
-          value: 600,
-          category: 'brideBeauty',
-          email: 'contato@belezapura.com',
-          phone: 11912348765,
-        },
-      },
-      {
-        id: '9',
-        name: 'Lua de Mel em Cancún',
-        category: 'honeyMoon',
-        value: 10000,
-        service: {
-          id: 's9',
-          name: 'Viagens dos Sonhos',
-          value: 10000,
-          category: 'honeyMoon',
-          email: 'contato@viagensdossonhos.com',
-        },
-      },
-      {
-        id: '10',
-        name: 'Despesa sem serviço associado',
-        category: 'gifts',
-        value: 500,
-      },
-
   ]
+
+  newExpense:Expense = {
+    id:'',
+    name:'',
+    value:0,
+    category:'buffet'
+  } 
 
   isFlipped: boolean = false;
 
@@ -206,8 +119,22 @@ export class BugetManagementPage implements OnInit {
   }
 
   get waveAnimationDuration(): number {
-    return 100 - (this.progressPercentage); // Ajuste conforme necessário
+    return 100 - (this.progressPercentage); 
   }
   
+  addServiceToNewExpanse =(service:Service,modal:IonModal)=>{
+    this.newExpense.id = service.id
+    this.newExpense.service = service
+    this.userExpenses.push(this.newExpense)
+    this.newExpense ={
+      id:'',
+      name:'',
+      value:0,
+      category:'buffet'
+    }
+    modal.dismiss()
+    this.calculateExpanses()
+    this.calculateRemainder()
+  }
 
 }

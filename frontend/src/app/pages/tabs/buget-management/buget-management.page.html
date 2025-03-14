@@ -84,11 +84,82 @@
 
 
     <div class="container-button">
-      <ion-button class="button-add-expense">
-        +
+      <ion-button class="button-add-expense" id="open-modal-new-expense">
+        Adicionar serviço parceiro
+      </ion-button>
+      <ion-button class="button-add-expense" id="open-services">
+        Adicionar serviço personalizado
       </ion-button>
     </div>
 
   
 </ion-content>
+
+
+<ion-modal id="dialog-modal" #modal trigger="open-modal-new-expense">
+  <ng-template>
+    <div class="wrapper">
+      <h1>NOVO SERVIÇO</h1>
+      <ion-item *ngIf=""></ion-item>
+      <div class="flex center container-separation">
+        <div class="line"></div>
+        <div class="separation"></div>
+        <div class="line"></div>
+      </div>
+      <h2>Serviço personalizado</h2>
+      <ion-input label="Nome" labelPlacement="stacked" [(ngModel)]="newExpense.name" ></ion-input>
+      <ion-select label="Categoria" labelPlacement="stacked" placeholder="Selecione a categoria" interface="action-sheet" [(ngModel)]="newExpense.category">
+        <ion-select-option *ngFor="let category of categories" [value]="category.value">
+          {{ category.label }}
+        </ion-select-option>
+      </ion-select>
+      <ion-input label="custo" labelPlacement="stacked" [(ngModel)]="newExpense.value" ></ion-input>
+      <ion-button>Adicionar</ion-button>
+      <ion-button (click)="modal.dismiss()">Voltar</ion-button>
+    </div>
+  </ng-template>
+</ion-modal>
+
+<ion-modal id="modal-services" #modalService trigger="open-services">
+  <ng-template>
+      <ion-content scrollY="true">
+          <div class="wrapper">
+              <ion-header>
+                  <ion-toolbar>
+                  <ion-title>NOSSOS SERVIÇOS</ion-title>
+                  <ion-buttons slot="end">
+                      <ion-button (click)="modalService.dismiss()" [strong]="true">X</ion-button>
+                  </ion-buttons>
+                  </ion-toolbar>
+              </ion-header>
+              <ion-card *ngFor="let service of allServices" class="card-container-service-info">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png">  
+                  <ion-card-title>{{service.name}}</ion-card-title>
+                  <ion-card-content>
+                  <p>descrição</p>
+                  </ion-card-content>
+                  <div class="container-value-category">
+                      <ion-card class="card-value-category">
+                          <ion-card-title>
+                              Valor
+                          </ion-card-title>
+                          <ion-card-content>
+                              {{service.value}}
+                          </ion-card-content>
+                      </ion-card>
+                      <ion-card class="card-value-category">
+                          <ion-card-title>
+                              Categoria
+                          </ion-card-title>
+                          <ion-card-content>
+                              {{service.category}}
+                          </ion-card-content>
+                      </ion-card>
+                  </div>
+                  <ion-button (click)="addServiceToNewExpanse(service,modalService)">Assinar serviço</ion-button>
+              </ion-card>
+          </div>
+      </ion-content>
+  </ng-template>
+</ion-modal>
 

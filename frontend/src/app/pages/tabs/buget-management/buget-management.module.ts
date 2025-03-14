@@ -8,12 +8,13 @@ import { BugetManagementPageRoutingModule } from './buget-management-routing.mod
 
 import { BugetManagementPage } from './buget-management.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BugetManagementPageRoutingModule
+    BugetManagementPageRoutingModule,
   ],
   declarations: [BugetManagementPage]
 })

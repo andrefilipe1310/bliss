@@ -12,9 +12,9 @@ export interface Service{
 id:string,
 name:string,
 link?:string,
-value:Number
-category:String,
-email:String
+value:number
+category:string,
+email:string
 phone?:Number
 }
 
