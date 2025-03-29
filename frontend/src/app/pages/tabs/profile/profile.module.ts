@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
+import { DateInputModule } from 'src/app/components/date-input/date-input.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    DateInputModule,
     ProfilePageRoutingModule
   ],
   declarations: [ProfilePage]
