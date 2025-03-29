@@ -1,0 +1,50 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-img
+      class="logo-img"
+      src="../../../assets/images/logo.png"
+      alt="Bliss Logo"
+    ></ion-img>
+
+    <div class="welcome-text">
+      <p>Conte-nos mais sobre o seu casamento e personalize sua experiência!</p>
+    </div>
+  </div>
+
+  <ion-item lines="none" class="input-name">
+    <ion-label position="stacked">Eu sou</ion-label>
+    <div class="input-group">
+      <ion-input placeholder="Nome" ></ion-input>
+      <ion-select interface="popover" slot="end" >
+        <ion-select-option value="noiva" >Noiva</ion-select-option>
+        <ion-select-option value="noivo">Noivo</ion-select-option>
+      </ion-select>
+    </div>
+  </ion-item>
+
+  <ion-item lines="none" class="input-name-pair">
+    <ion-label position="stacked">Meu par é</ion-label>
+    <div class="input-group">
+      <ion-input placeholder="Nome" ></ion-input>
+      <ion-select interface="popover" slot="end">
+        <ion-select-option value="noiva">Noiva</ion-select-option>
+        <ion-select-option value="noivo">Noivo</ion-select-option>
+      </ion-select>
+    </div>
+  </ion-item>
+
+<app-date-input></app-date-input>
+
+
+<ion-item lines="none" class="input-guests-budget">
+  <div class="input-group">
+    <ion-label position="stacked">Nª de Convidados</ion-label>
+    <ion-input placeholder="0" ></ion-input>
+  </div>
+  <div class="input-group">
+    <ion-label position="stacked">Orçamento</ion-label>
+    <ion-input placeholder="R$0,00" ></ion-input>
+  </div>
+</ion-item>
+
+</ion-content>

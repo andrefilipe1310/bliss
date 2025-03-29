@@ -13,7 +13,12 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
-  }
+  },  {
+    path: 'wedding-information',
+    loadChildren: () => import('./pages/wedding-information/wedding-information.module').then( m => m.WeddingInformationPageModule)
+  },
+
+
 
   
 

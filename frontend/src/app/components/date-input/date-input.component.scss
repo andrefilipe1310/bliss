@@ -1,0 +1,24 @@
+ion-item {
+  width: 100%;
+
+  ion-label {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    color: var(--gray-text-color);
+    font-weight: bold;
+  }
+
+  ion-input {
+    --padding-start: 10px; 
+    --padding-end: 16px; 
+    --padding-top: 10px; 
+    --padding-bottom: 10px;
+    border: solid 1px var(--secound-color);
+    flex: 1;
+    margin-right: 10px;
+    border-radius: 6px;
+    color: var(--gray-text-color);
+    font-style: italic;
+  }
+}
