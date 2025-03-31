@@ -2,63 +2,55 @@
 
 <ion-content [fullscreen]="true">
   <div class="container">
-    <ion-img
-      class="logo-img"
-      src="../../../assets/images/logo.png"
-      alt="Bliss Logo"
-    ></ion-img>
+    <ion-img class="logo-img" src="../../../assets/images/logo.png" alt="Bliss Logo"></ion-img>
+
     <!-- Área de login -->
-    <div class="login">
-      <ion-input
-        class="email-input"
-        label="Email"
-        label-placement="floating"
-        fill="outline"
-        placeholder="Ex: Address@email.com"
-    
-      ></ion-input>
-      <ion-input
-        class="password-input"
-        label="Password"
-        label-placement="floating"
-        fill="outline"
-        placeholder="**************"
-      ></ion-input>
-    </div> <!-- /Área de login -->
-    <!-- divisor -->
-    <div class="divisor-div">
-      <div class="line"></div>
-      <div>ou</div>
-      <div class="line"></div>
-    </div>  <!-- /divisor -->
-    <!-- Entrar com google -->
-    <div class="google-button">
-      <ion-button fill="clear" color="dark">
-        <ion-img class="logo-google" src="../../../assets/icons/logo-google.png"></ion-img>
-        Fazer login com o google
-      </ion-button>
-    </div> <!-- /Entrar com google -->
-    <!-- Esqueci a senha -->
-    <div class="forget-password-text">
-    <p class="forget-password">Esqueceu a senha? </p>
-    <a href="">
-      <p class="recover-password"> Recuperar senha</p>
-    </a>
-    </div> <!-- /Esqueci a senha -->
-    
-    
-    <!-- Cadastrar -->
-    <div class="register-text">
-    <p class="question">É novo no Bliss? </p>
-    <a href="/register">
-      <p class="register-link"> Realize seu cadastro</p>
-    </a>
-    </div> <!-- /Cadastrar -->
-    
-    
-    <div class="login-button-div">
-    <ion-button>ENTRAR</ion-button>
+    <form (submit)="login()">
+      <div class="login">
+        <ion-input class="email-input" label="Email" type="email" [(ngModel)]="user.email" name="email"
+          label-placement="floating" fill="outline" placeholder="Ex: Address@email.com"></ion-input>
+        <ion-input class="password-input" label="Password" type="password" [(ngModel)]="user.password" name="password"
+          label-placement="floating" fill="outline" placeholder="**************"></ion-input>
+      </div>
+
+      <!-- divisor -->
+      <div class="divisor-div">
+        <div class="line"></div>
+        <div>ou</div>
+        <div class="line"></div>
+      </div> <!-- /divisor -->
+
+      <!-- Entrar com google -->
+      <div class="google-button">
+        <ion-button fill="clear" color="dark">
+          <ion-img class="logo-google" src="../../../assets/icons/logo-google.png"></ion-img>
+          Fazer login com o Google
+        </ion-button>
+      </div> <!-- /Entrar com google -->
+
+      <!-- Esqueci a senha -->
+      <div class="forget-password-text">
+        <p class="forget-password">Esqueceu a senha?</p>
+        <a>
+          <p class="recover-password"> Recuperar senha</p>
+        </a>
+      </div> <!-- /Esqueci a senha -->
+
+      <!-- Cadastrar -->
+      <div class="register-text">
+        <p class="question">É novo no Bliss?</p>
+        <a [routerLink]="['/register']">
+          <p class="register-link"> Realize seu cadastro</p>
+        </a>
+      </div> <!-- /Cadastrar -->
+
+      <div class="login-button-div">
+        <ion-button type="submit">ENTRAR</ion-button>
+      </div>
+    </form> <!-- /Área de login -->
+
+    <div>
+      <ion-toast trigger="open-toast" message="{{ getAlert() }}" [duration]="3000" icon="globe"></ion-toast>
     </div>
   </div>
-
 </ion-content>
