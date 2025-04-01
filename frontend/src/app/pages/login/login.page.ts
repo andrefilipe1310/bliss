@@ -48,17 +48,17 @@ export class LoginPage implements OnInit {
 
   ngOnInit() { }
 
-  login() {
+  login():boolean {
     // Validação de campos vazios
     if (this.user.email.trim() === "" || this.user.password.trim() === "") {
       this.setAlert("Preencha todos os campos");
-      return;
+      return false;
     }
 
     // Correção da validação de e-mail
     if (!(/\S+@\S+\.\S+/.test(this.user.email))) {
       this.setAlert("E-mail não é válido");
-      return;
+      return false;
     }
 
     this.authService.login(this.user).subscribe(
@@ -66,11 +66,14 @@ export class LoginPage implements OnInit {
         localStorage.setItem("token", token);
         this.router.navigate(["/tabs"]);
         this.setAlert("Login efetuado com sucesso", "success");
+        return true
       },
       (error) => {
         console.error(error);
         this.setAlert("Falha na autenticação");
+        
       }
     );
+    return false
   }
 }

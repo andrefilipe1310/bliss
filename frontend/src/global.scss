@@ -28,14 +28,14 @@
 
 @font-face {
     font-family: 'text-font';
-    src: url('/assets/fonts/Lato-Thin.ttf');
+    src: url('~assets/fonts/Lato-Thin.ttf') format('truetype');
     font-weight: 300; /* Light */
     font-style: normal;
   }
   
   @font-face {
     font-family: 'text-font';
-    src: url('/assets/fonts/Lato-Regular.ttf');
+    src: url('~assets/fonts/Lato-Regular.ttf') format('truetype');
     font-weight: 400; /* Regular */
     font-style: normal;
   }
@@ -43,21 +43,21 @@
   
   @font-face {
     font-family: 'text-font';
-    src: url('/assets/fonts/Lato-Bold.ttf');
+    src: url('~assets/fonts/Lato-Bold.ttf') format('truetype');
     font-weight: 700; /* Bold */
     font-style: normal;
   }
   
   @font-face {
     font-family: 'text-font';
-    src: url('/assets/fonts/Lato-Black.ttf');
+    src: url('~assets/fonts/Lato-Black.ttf') format('truetype');
     font-weight: 900; /* Black */
     font-style: normal;
   }
 
   @font-face {
     font-family: 'MainFont';
-    src: url('../../../../assets/fonts/Main-Font.ttf') format('truetype');
+    src: url('~assets/fonts/Main-Font.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
