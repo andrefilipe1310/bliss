@@ -1,0 +1,57 @@
+
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <h2>Grande momento em:</h2>
+    <h1>365 dias</h1>
+    <p>12/02/2026</p>
+  </div>
+
+  <div class="icons">
+    <div class="division-buttons-icon">
+      <ion-button class="icon">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-label>Notificações</ion-label>
+    </div>
+    <div class="division-buttons-icon">
+      <ion-button class="icon" (click)="activeSearch()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-label>Pesquisar</ion-label>
+    </div>
+    <div class="division-buttons-icon">
+      <ion-button class="icon">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+      <ion-label>Meu Casamento</ion-label>
+    </div>
+  </div>
+
+  <ng-container *ngIf="searchIsActive else notActive">
+    <ion-input type="text" (ionInput)="search($event.detail.value || '')" fill="outline" placeholder="Pesquisar...">
+      <ion-icon slot="start" name="search-outline"></ion-icon>
+    </ion-input>
+  </ng-container>
+  
+  <ng-template #notActive>
+    
+  </ng-template>
+
+  <ion-list *ngFor="let service of filteredServices">
+    <ion-item button>
+      <img
+      src="https://docs-demo.ionic.io/assets/madison.jpg"
+      alt="The Wisconsin State Capitol building in Madison, WI at night"
+      >
+      <ion-label>
+        <h2>{{service.name}}</h2>
+        <p>Categoria: {{changeCategoryToPTBR(service.category)}}</p>
+        <p>Email:{{service.email}}</p>
+        <p>Contato: {{service.phone}}</p>
+        <h3><ion-icon name="cash-outline"></ion-icon> {{service.value}}</h3>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
