@@ -1,36 +1,36 @@
-.navbar{
-    position: relative !important;
-    background-color: #647D8C !important;
-    width: 80% !important;
+ion-tab-bar{
+    width: 80%;
     align-self: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    z-index: 1;
-    height: 16vw;
- 
+    margin-bottom: -1vh;
+    border-radius: 10px;
+    overflow: visible !important;
+    contain: none;
+    background-color: var(--gray-tabs-color);
+    justify-content: space-evenly;
+    --ion-tab-button-width: 5px;
+    height: 8vh;
+    box-shadow: 0px 4px 12px #0b0b3281
 }
-.navButton{
+
+ion-tab-button{
+    --color: white;
     background: none;
-    color: #f1f1f1;
-    z-index: 2;
+    --color-selected:var(--blue-text-color) ;
+    transition: 0.3s;  
+    width: 20%;
+    flex: 0 0 auto;
+    
 }
 ion-tab-button.tab-selected{
-    background-color: #f1f1f1;
-    color: #012840;
+   height: 9vh;
+   width: 25%;
+   transition: 0.3s;
+    margin-bottom: 5vh;
+    background: white;
     border-radius: 15px;
-    transition: 0.5s ;
-    height: 150%;
+    box-shadow: 0px 4px 12px #0b0b3281;
 }
-ion-tab-button {
-    --background-activated: transparent; 
-    --color-activated: var(--color); 
-    --ripple-color: transparent; 
-    --transition: none; 
-  }
-  
-  ion-tab-button:active {
-    opacity: 1; 
-  }
+
 
 .logo-img{
     width: 8rem;
