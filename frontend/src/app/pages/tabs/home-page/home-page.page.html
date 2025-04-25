@@ -27,18 +27,27 @@
     </div>
   </div>
 
-  <ng-container *ngIf="searchIsActive else notActive">
+  <ng-container *ngIf="searchIsActive else notActive" class="container-search">
     <ion-input type="text" (ionInput)="search($event.detail.value || '')" fill="outline" placeholder="Pesquisar...">
       <ion-icon slot="start" name="search-outline"></ion-icon>
     </ion-input>
+    <div class="container-categories">
+      <ion-button (click)="filter(categorie.label)" *ngFor="let categorie of categories">{{categorie.label}}</ion-button>
+    </div>
+    <div style="display: flex; align-items: center;justify-content: center; width: 100%; margin-top: 0.5rem;">
+      <ion-button (click)="Clearfilter()" class="clear-filter">
+        <ion-icon slot="start" name="remove-circle"></ion-icon>
+        Limpar filtros</ion-button>
+    </div>
+    
   </ng-container>
   
   <ng-template #notActive>
     
   </ng-template>
 
-  <ion-list *ngFor="let service of filteredServices">
-    <ion-item button>
+  <ion-list >
+    <ion-item button *ngFor="let service of filteredServices">
       <img
       src="https://docs-demo.ionic.io/assets/madison.jpg"
       alt="The Wisconsin State Capitol building in Madison, WI at night"
@@ -47,8 +56,11 @@
         <h2>{{service.name}}</h2>
         <p>Categoria: {{changeCategoryToPTBR(service.category)}}</p>
         <p>Email:{{service.email}}</p>
-        <p>Contato: {{service.phone}}</p>
-        <h3><ion-icon name="cash-outline"></ion-icon> {{service.value}}</h3>
+        <ng-container *ngIf="service.phone else notNumber">
+          <p>Contato: {{service.phone}}</p>
+        </ng-container>
+        <ng-template #notNumber></ng-template>
+        <h3><ion-icon name="cash-outline"></ion-icon> R$ {{formatNumber(service.value)}}</h3>
       </ion-label>
     </ion-item>
 

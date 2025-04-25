@@ -106,7 +106,7 @@ export class BugetManagementPage implements OnInit {
   calculateExpanses = ()=>{
     this.userExpenses.map(expense=> expense.service ? this.userBudget.actualExpense+=expense.service.value : this.userBudget.actualExpense+= expense.value) 
   }
-  formatNumber = (value: number): string => {
+   formatNumber = (value: number): string => {
     return value.toLocaleString('pt-BR'); 
   };
 
