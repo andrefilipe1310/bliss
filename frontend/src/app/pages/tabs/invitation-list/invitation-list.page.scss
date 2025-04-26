@@ -294,3 +294,17 @@ ion-modal#dialog-modal {
   ion-modal#dialog-modal .wrapper {
     margin-bottom: 10px;
   }
+
+  .title-invitation {
+    display: flex; 
+    align-items: center; 
+    gap: 0.5em; 
+  }
+  
+  .icon-edit {
+    font-size: 1em; 
+    color: var(--ion-color-medium); 
+    opacity: 0.7; 
+    cursor: pointer; 
+    
+  }
