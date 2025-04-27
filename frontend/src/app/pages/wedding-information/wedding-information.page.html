@@ -14,9 +14,9 @@
   <ion-item lines="none" class="input-name">
     <ion-label position="stacked">Eu sou</ion-label>
     <div class="input-group">
-      <ion-input placeholder="Nome" ></ion-input>
-      <ion-select interface="popover" slot="end" >
-        <ion-select-option value="noiva" >Noiva</ion-select-option>
+      <ion-input placeholder="Nome"></ion-input>
+      <ion-select interface="popover" slot="end">
+        <ion-select-option value="noiva">Noiva</ion-select-option>
         <ion-select-option value="noivo">Noivo</ion-select-option>
       </ion-select>
     </div>
@@ -25,7 +25,7 @@
   <ion-item lines="none" class="input-name-pair">
     <ion-label position="stacked">Meu par é</ion-label>
     <div class="input-group">
-      <ion-input placeholder="Nome" ></ion-input>
+      <ion-input placeholder="Nome"></ion-input>
       <ion-select interface="popover" slot="end">
         <ion-select-option value="noiva">Noiva</ion-select-option>
         <ion-select-option value="noivo">Noivo</ion-select-option>
@@ -33,18 +33,74 @@
     </div>
   </ion-item>
 
-<app-date-input></app-date-input>
+  <app-date-input></app-date-input>
+  <ion-item lines="none" class="input-guests-budget">
+    <div class="input-group-wrapper">
+      <div class="input-group">
+        <ion-label position="stacked">Nº de Convidados</ion-label>
+        <ion-input type="number" placeholder="0" (ionInput)="blockInput($event)"></ion-input>
+      </div>
+      <div class="input-group">
+        <ion-label position="stacked">Orçamento</ion-label>
+        <ion-input
+          [(ngModel)]="budget"
+          (ionInput)="onBudgetInput($event)"
+          type="text"
+          inputmode="decimal"
+          placeholder="R$ 0,00"
+        ></ion-input>
+      </div>
+    </div>
+  </ion-item>
 
-
-<ion-item lines="none" class="input-guests-budget">
-  <div class="input-group">
-    <ion-label position="stacked">Nª de Convidados</ion-label>
-    <ion-input placeholder="0" ></ion-input>
+  <div class="suppliers-preference">
+    <ion-label class="suppliers-title">Preferência de Fornecedores</ion-label>
+    <div class="suppliers-options">
+      <ion-checkbox justify="start" labelPlacement="end">Recepção</ion-checkbox>
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Cerimonialista</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end">Convites</ion-checkbox>
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Foto e Vídeo</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Buffet e Gastronomia</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Decoração</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Noiva e Acessórios</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Confeitaria</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Noivo e Acessórios</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Lua de Mel</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end">Música</ion-checkbox>
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Beleza e Saúde</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Joalheria</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end">Animação</ion-checkbox>
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Celebrante</ion-checkbox
+      >
+      <ion-checkbox justify="start" labelPlacement="end">Outros</ion-checkbox>
+      <ion-checkbox justify="start" labelPlacement="end"
+        >Lembranças</ion-checkbox
+      >
+    </div>
   </div>
-  <div class="input-group">
-    <ion-label position="stacked">Orçamento</ion-label>
-    <ion-input placeholder="R$0,00" ></ion-input>
-  </div>
-</ion-item>
 
+  <div class="register-button">
+    <ion-button expand="block" color="primary">REGISTRAR</ion-button>
+  </div>
 </ion-content>

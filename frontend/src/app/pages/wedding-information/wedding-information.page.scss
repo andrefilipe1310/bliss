@@ -25,50 +25,15 @@ body {
   }
 }
 
-.input-name {
-  width: 100%;
-
-  ion-label {
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
-    color: var(--gray-text-color);
-    font-weight: bold;
-  }
-
-  .input-group {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-
-    ion-input {
-      --padding-start: 10px;
-      border: solid 1px var(--secound-color);
-      flex: 1;
-      margin-right: 10px;
-      border-radius: 6px;
-      padding: 8px;
-    }
-
-    ion-select {
-        --padding-start: 10px;
-      border: solid 1px var(--secound-color);
-      width: 110px;
-      border-radius: 6px;
-      padding: 2px;
-    }
-  }
-}
-
+.input-name,
 .input-name-pair {
   width: 100%;
-
   ion-label {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-left: 0.5rem;
     color: var(--gray-text-color);
-    font-weight: bold;
+    font-weight: 600;
   }
-
   .input-group {
     margin-top: 1rem;
     display: flex;
@@ -76,32 +41,88 @@ body {
 
     ion-input {
       --padding-start: 10px;
+      --padding-end:100px;
       border: solid 1px var(--secound-color);
       flex: 1;
       margin-right: 10px;
-      border-radius: 6px;
-      padding: 8px;
+      border-radius: 8px;
+      
     }
-
     ion-select {
-        --padding-start: 10px;
+      --padding-start: 10px;
       border: solid 1px var(--secound-color);
-      width: 110px;
-      border-radius: 6px;
-      padding: 2px;
+      width: 100px;
+      border-radius: 8px;
+      
     }
   }
 }
 
-.input-guests-budget{
-    width: 100%;
+.input-guests-budget {
+  --inner-padding-end: 0;
+  --padding-start: 0;
+  
+  .input-group-wrapper {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
     
-
-.input-group{
-    width: 40%;
+    .input-group {
+      width: 42%;
+      
+      ion-label {
+        font-size: 1.1rem;
+        margin-left: 0.5rem;
+        color: var(--gray-text-color);
+        font-weight: 600;
+      }
+      
+      ion-input {
+        margin-top: 0.5rem;
+        --padding-start: 10px;
+        border: solid 1px var(--secound-color);
+        border-radius: 8px;
+        padding: 10px;
+      }
+    }
+  }
 }
 
+.suppliers-preference {
+  margin: 2rem 1rem;
+
+  .suppliers-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gray-text-color);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .suppliers-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  ion-checkbox {
+    --size: 20px;
+    --checkbox-background-checked: var(--secound-color);
+    --border-color-checked: var(--secound-color);
+    font-size: 0.95rem;
+    color: var(--gray-text-color);
+  }
 }
 
+.register-button {
+  padding: 2rem 1rem;
+
+  ion-button {
+    --background: linear-gradient(90deg, #f04d8c, #eb4985);
+    --border-radius: 8px;
+    font-weight: 700;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    height: 50px;
+    font-size: 1rem;
+  }
+}
