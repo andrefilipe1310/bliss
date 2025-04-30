@@ -8,7 +8,7 @@ import { AlertController } from '@ionic/angular';
   standalone:false
 })
 export class WeddingInformationPage implements OnInit {
-
+  /* Cria um type para isso e fornece apenas um JSON WenddingInformation*/
   name: string = '';
   partnerName: string = '';
   weddingDate: string = '';
@@ -16,7 +16,7 @@ export class WeddingInformationPage implements OnInit {
   budget: string = '';
   selectedSuppliers: string[] = [];
   
-
+  /* Só deixa se for usar */
   constructor(private alertController: AlertController) { }
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class WeddingInformationPage implements OnInit {
 
   
 
-lastValidBudget: string = 'R$ 0,00';
+lastValidBudget: string = 'R$ 0,00'; // tomar cuidado com o tipo string nesse campo
 
 onBudgetInput(event: any) {
   const input = event.target as HTMLInputElement;
@@ -41,23 +41,23 @@ onBudgetInput(event: any) {
   
   // 4. Verifica se ultrapassou o limite
   if (numericValue > MAX_IN_CENTS) {
-    // 4a. Se ultrapassar, restaura o último valor válido
+    // Se ultrapassar, restaura o último valor válido
     input.value = this.lastValidBudget;
     // Coloca o cursor no final
     setTimeout(() => input.setSelectionRange(this.lastValidBudget.length, this.lastValidBudget.length));
     return;
   }
   
-  // 5. Formata o novo valor
+  
   const formattedValue = this.formatCurrency(numericValue / 100);
   
-  // 6. Atualiza somente se for diferente
+  // 5. Atualiza somente se for diferente
   if (formattedValue !== this.lastValidBudget) {
     this.budget = formattedValue;
     this.lastValidBudget = formattedValue;
   }
 }
-
+/* Sugestão, declara as funções antes de usa-las */
 private formatCurrency(value: number): string {
   return value.toLocaleString('pt-BR', {
     style: 'currency',
@@ -66,20 +66,16 @@ private formatCurrency(value: number): string {
   }).replace('R$', 'R$ ');
 }
 
-
+  
   blockInput(event: any) {
     const input = event.target as HTMLInputElement;
     let value = input.value;
-
     // Remove qualquer caractere que não seja número
     value = value.replace(/[^0-9]/g, '');
-
     // Limita o número de caracteres para no máximo 4
     if (value.length > 4) {
       value = value.substring(0, 4);
     }
-
-
     if (value) {
       const numericValue = parseInt(value, 10);
       if (numericValue > 1000) {
@@ -89,7 +85,6 @@ private formatCurrency(value: number): string {
         }
       }
     }
-
     input.value = value;
   }
 

@@ -1,7 +1,7 @@
 body {
   background-color: var(--primary-color);
 }
-
+/* adicionar '&' nas estilizações dentro de containers */
 .container {
   padding-top: 1rem;
 }
@@ -16,7 +16,7 @@ body {
   text-align: center;
   margin-bottom: 1rem;
 
-  p {
+  & p {
     font-size: 1rem;
     color: var(--gray-text-color);
     line-height: 1.5;
@@ -28,18 +28,18 @@ body {
 .input-name,
 .input-name-pair {
   width: 100%;
-  ion-label {
+  & ion-label {
     font-size: 1.1rem;
     margin-left: 0.5rem;
     color: var(--gray-text-color);
     font-weight: 600;
   }
-  .input-group {
+  & .input-group {
     margin-top: 1rem;
     display: flex;
     justify-content: space-between;
 
-    ion-input {
+   & ion-input {
       --padding-start: 10px;
       --padding-end:100px;
       border: solid 1px var(--secound-color);

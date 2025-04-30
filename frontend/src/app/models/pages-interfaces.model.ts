@@ -8,7 +8,7 @@ export type PersonType =
   | "brideFather" 
   | "groomFather";
   
-export interface Service{
+export interface Service{ // nunca se cria um tipo chamado service, isso confunde todo mundo!!!!!!!!!!!
 id:string,
 name:string,
 link?:string,
@@ -37,7 +37,7 @@ id:string,
 name:string,
 type: PersonType,
 email:string,
-phone:number | null
+phone:number| string | null
 photo?:string
 bog:'bride'| 'groom' 
 }

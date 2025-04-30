@@ -308,3 +308,32 @@ ion-modal#dialog-modal {
     cursor: pointer; 
     
   }
+
+  .name-container {
+    display: flex;
+    align-items: center;
+    & .icon-edit { 
+        position: relative;
+        left: 2em;
+        font-size: 12px;
+        width: 3.5em !important;
+        height: 2.5em !important;
+      }
+  }
+
+  .phone-container {
+    display: flex;
+    align-items: center;
+    & .icon-edit { 
+        position: relative;
+        left: 1em;
+        font-size: 12px;
+        width: 3.5em !important;
+        height: 2.5em !important;
+      }
+
+      color: var(--ion-color-primary);
+      & h3 {
+        font-size: 1.3rem;
+      }
+  }

@@ -66,7 +66,7 @@ export class InvitationListPage implements OnInit {
   errorMessagePhone: string = '';
   isEditing: { [key: string]: boolean } = {}; // Objeto para controlar o estado de edição de cada convidado
   originalNames: { [key: string]: string } = {}; // Objeto para armazenar os nomes originais
-
+  originalPhones: { [key: string]: string } = {};
   saveOldDataGuestType = (g: Guest) => {
     this.oldGuestDataType = g.type;
   }
@@ -131,7 +131,7 @@ export class InvitationListPage implements OnInit {
         name: "",
         type: "guest",
         email: "",
-        phone: null,
+        phone: "",
         bog: 'bride' // Defina um valor padrão, será sobrescrito ao adicionar
       };
 
@@ -164,6 +164,11 @@ export class InvitationListPage implements OnInit {
 
   startEditName(guestId: string, currentName: string) {
     this.originalNames[guestId] = currentName;
+    this.isEditing[guestId] = true;
+  }
+
+  startEditPhone (guestId: string, currentPhone: string) {
+    this.originalPhones[guestId] = currentPhone;
     this.isEditing[guestId] = true;
   }
 
@@ -212,4 +217,7 @@ export class InvitationListPage implements OnInit {
       console.log(`Dismissed with role: ${event.detail.role}`);
     }
   }
+ 
 }
+
+

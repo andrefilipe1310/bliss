@@ -1,3 +1,5 @@
+
+/* adiciona apenas um comentario no topo dizendo o que faz */
 @keyframes slideDown {
   from {
     transform: translateY(-100%); /* Começa acima */
@@ -10,18 +12,18 @@
 }
   
 
-
+// adicionar notação & para ter certeza que está modificando apenas o conteúdo dentro do container e identar
 ion-content{
     --padding-top: 5rem
 }
 
-.header {
+ .header {
     text-align: center;
     padding: 2rem;
     background-color: var(--secound-color);
     color: #ffffff;
   
-    h2 {
+    & h2 {
       margin: 0;
       font-size: 1.5rem;
       font-weight: 500;

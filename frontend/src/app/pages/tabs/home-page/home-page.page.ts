@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
-
+//trocar pasta dos jsons, adicionar uma pasta chamada mock que vai ter esses jsons
 import services from '../../../models/allServices.json'
 import { Service } from 'src/app/models/pages-interfaces.model';
 
@@ -10,12 +10,12 @@ import { Service } from 'src/app/models/pages-interfaces.model';
   standalone: false,
 })
 export class HomePagePage implements OnInit {
+/* Trocar nome dos arquivos para apenas home */
 
-
-  allServices = services as Service[] 
-  filteredServices: Service[] = this.allServices.sort((a:any, b:any) =>  a.name.localeCompare(b.name))
+  allServices = services as Service[]                   
+  filteredServices: Service[] = this.allServices.sort((a:Service, b:Service) =>  a.name.localeCompare(b.name))
   searchIsActive = false 
-
+  /* Usar um type DispenseCatogory */
   categories: { value: Service['category']; label: string }[] = [
     { value: 'buffet', label: 'Buffet' },
     { value: 'localRent', label: 'Aluguel de Local' },
@@ -29,7 +29,7 @@ export class HomePagePage implements OnInit {
   ];
 
   changeCategoryToPTBR = (value:string)=>{
-    const label = this.categories.find(v => v.value === value)?.label
+    const label = this.categories.find(categorie => categorie.value === value)?.label
 
     if (!label){
       return "sem categoria"
@@ -38,17 +38,20 @@ export class HomePagePage implements OnInit {
   }
 
 //pesquisa
+  // string em minusculo
   search = (name:String)=>{
     if (name === '' || undefined){
-      this.filteredServices = this.allServices.sort((a:any, b:any) =>  a.name.localeCompare(b.name))
+      this.filteredServices = this.allServices.sort((a:Service, b:Service) =>  a.name.localeCompare(b.name))
     }
+    // alterar any e faz uma função para ordenar dentro de uma pasta function
     this.filteredServices = services.filter(service => service.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())).sort((a:any, b:any) =>  a.name.localeCompare(b.name))
   }
-
+// alterar any
   filter = (category:string)=>{
     this.filteredServices = this.allServices.sort((a:any, b:any) => a.name.localeCompare(b.name))
     this.filteredServices = this.filteredServices.filter(service => service.name.toLocaleLowerCase().includes(category.toLocaleLowerCase())).sort((a:any, b:any) =>  a.name.localeCompare(b.name))
   }
+  // alterar any
   Clearfilter = ()=>{
     this.filteredServices = this.allServices.sort((a:any, b:any) =>  a.name.localeCompare(b.name))
   }
@@ -61,7 +64,7 @@ export class HomePagePage implements OnInit {
   formatNumber = (value: number): string => {
     return value.toLocaleString('pt-BR'); 
   };
-
+  //Construtor sempre no topo do codigo
   constructor() { }
 
   ngOnInit() {

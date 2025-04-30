@@ -33,7 +33,7 @@
     </div>
   </ion-item>
 
-  <app-date-input></app-date-input>
+  <app-date-input></app-date-input> <!-- input para adicionar data do casamento -->
   <ion-item lines="none" class="input-guests-budget">
     <div class="input-group-wrapper">
       <div class="input-group">
@@ -42,6 +42,7 @@
       </div>
       <div class="input-group">
         <ion-label position="stacked">Orçamento</ion-label>
+        <!-- Não deixar ele digitar valores não numericos -->
         <ion-input
           [(ngModel)]="budget"
           (ionInput)="onBudgetInput($event)"
@@ -101,6 +102,7 @@
   </div>
 
   <div class="register-button">
+    <!-- Colocar a css em css -->
     <ion-button expand="block" color="primary">REGISTRAR</ion-button>
   </div>
 </ion-content>
