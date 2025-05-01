@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import services from '../../../models/allServices.json'
+import services from '../../../mocks/allServices.json'
 import { IonicModule } from '@ionic/angular'; // Importe o IonicModule
 import { IonModal } from '@ionic/angular/common';
 

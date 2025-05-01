@@ -3,7 +3,7 @@ import {
   IonModal,
 } from '@ionic/angular/standalone';
 import { Guest, PersonType } from 'src/app/models/pages-interfaces.model';
-import data from '../../../models/testData.json'
+import data from '../../../mocks/testData.json'
 import type { OverlayEventDetail } from '@ionic/core';
 
 
