@@ -1,3 +1,5 @@
+
+
 <ion-content [fullscreen]="true" class="content">
   <div>
     <h1 class="title">LISTA DE CONVIDADOS</h1>
@@ -7,253 +9,55 @@
       <div class="line"></div>
     </div>
   </div>
-
+  
+  <!-- Botões para abrir os modais -->
   <div class="container-invite-buttons">
     <div>
-      <ion-button id="open-invitation-bride" class="open-invitation-bride">
+      <ion-button id="open-invitation-bride" class="open-invitation-bride" (click)="openModal('bride')">
         <ion-icon name="person-add" class="icon-wife"></ion-icon>
       </ion-button>
       <ion-label>Adicionar convidado noiva</ion-label>
     </div>
     <div>
-      <ion-button id="open-invitation-groom" class="open-invitation-groom">
+      <ion-button id="open-invitation-groom" class="open-invitation-groom" (click)="openModal('groom')">
         <ion-icon name="person-add" class="icon-husband"></ion-icon>
       </ion-button>
       <ion-label>Adicionar convidado noivo</ion-label>
     </div>
   </div>
 
-  <ion-modal id="dialog-modal" #modalBride trigger="open-invitation-bride" backdropDismiss="false">
-    <ng-template>
-      <div class="wrapper">
-        <h1 class="title-invite">Enviar Convite</h1>
+  <!-- Modais personalizados -->
+  <app-add-guest-modal
+    [guestType]="'bride'"
+    [(isOpen)]="isBrideModalOpen"
+    (guestAdded)="onGuestAdded($event)">
+  </app-add-guest-modal>
 
-        <ion-list lines="none">
-          <ion-item>
-            <ion-label position="stacked">Nome</ion-label>
-            <ion-input placeholder="ex: Mario Algusto" [(ngModel)]="newGuestData.name"></ion-input>
-          </ion-item>
-          <ion-text color="danger">
-            {{ errorMessageName }}
-          </ion-text>
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input placeholder="ex: andre@gmail.com" [(ngModel)]="newGuestData.email"></ion-input>
-          </ion-item>
-          <ion-text color="danger">
-            {{ errorMessageEmail }}
-          </ion-text>
-          <ion-item>
-            <ion-label position="stacked">Telefone</ion-label>
-            <ion-input placeholder="ex: (81)9999999" [(ngModel)]="newGuestData.phone"></ion-input>
-          </ion-item>
-          <ion-text color="danger">
-            {{ errorMessagePhone }}
-          </ion-text>
-          <ion-item>
-            <ion-label position="stacked">Tipo de convidado</ion-label>
-            <ion-select interface="action-sheet" placeholder="Selecione o tipo" [(ngModel)]="newGuestData.type">
-              <ion-select-option value="guest">Convidado</ion-select-option>
-              <ion-select-option value="bestMan">Padrinho</ion-select-option>
-              <ion-select-option value="brideMaid">Madrinha</ion-select-option>
-              <ion-select-option value="brideMother">mãe da noiva</ion-select-option>
-              <ion-select-option value="brideFather">pai da noiva</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+  <app-add-guest-modal
+    [guestType]="'groom'"
+    [(isOpen)]="isGroomModalOpen"
+    (guestAdded)="onGuestAdded($event)">
+  </app-add-guest-modal>
 
-        <div class="button-container">
-          <ion-button class="send-button" (click)="addNewGuest(modalBride,'bride')">Enviar</ion-button>
-          <ion-button class="send-button" (click)='closeModalNewGuest(modalBride)'>cancelar</ion-button>
-        </div>
-      </div>
-    </ng-template>
-  </ion-modal>
-
-
-  <ion-modal id="dialog-modal" #modalGroom trigger="open-invitation-groom" backdropDismiss="false">
-    <ng-template>
-      <div class="wrapper">
-        <h1 class="title-invite">Enviar Convite</h1>
-
-        <ion-list lines="none">
-          <ion-item>
-            <ion-label position="stacked">Nome</ion-label>
-            <ion-input placeholder="ex: Mario Algusto" [(ngModel)]="newGuestData.name"></ion-input>
-          </ion-item>
-          <ion-text color="danger">
-            {{ errorMessageName }}
-          </ion-text>
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input placeholder="ex: andre@gmail.com" [(ngModel)]="newGuestData.email"></ion-input>
-          </ion-item>
-          <ion-text color="danger">
-            {{ errorMessageEmail }}
-          </ion-text>
-          <ion-item>
-            <ion-label position="stacked">Telefone</ion-label>
-            <ion-input placeholder="ex: (81)9999999" [(ngModel)]="newGuestData.phone"></ion-input>
-          </ion-item>
-          <ion-text color="danger">
-            {{ errorMessagePhone }}
-          </ion-text>
-          <ion-item>
-            <ion-label position="stacked">Tipo de convidado</ion-label>
-            <ion-select interface="action-sheet" placeholder="Selecione o tipo" [(ngModel)]="newGuestData.type">
-              <ion-select-option value="guest">Convidado</ion-select-option>
-              <ion-select-option value="bestMan">Padrinho</ion-select-option>
-              <ion-select-option value="brideMaid">Madrinha</ion-select-option>
-              <ion-select-option value="groomMother">mãe do noivo</ion-select-option>
-              <ion-select-option value="groomFather">pai do noivo</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-        <div class="button-container">
-          <ion-button class="send-button" (click)="addNewGuest(modalBride,'groom')">Enviar</ion-button>
-          <ion-button class="send-button" (click)='closeModalNewGuest(modalGroom)'>cancelar</ion-button>
-        </div>
-      </div>
-    </ng-template>
-  </ion-modal>
-
-
-  <div class="flex center container-separation">
-    <div class="line"></div>
-    <div>
-      <ion-icon name="person"></ion-icon>
-    </div>
-    <div class="line"></div>
-  </div>
-
+  <!-- Lista de convidados da noiva -->
   <div class="guest-container">
     <ion-grid>
       <ion-row>
         <ion-col class="guest" size="3" *ngFor="let guest of brideGuests">
-          <ion-button [id]="'open-modal-invite-' + guest.id">
-            <ion-icon name="person"></ion-icon>
-          </ion-button>
-          <ion-label> {{ guest.name }}</ion-label>
+          <app-guest-card [guest]="guest" bog="bride"></app-guest-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 
-  <div class="flex center container-separation-2">
-    <div class="line"></div>
-    <div>
-      <ion-icon name="person"></ion-icon>
-    </div>
-    <div class="line"></div>
-  </div>
-
+  <!-- Lista de convidados do noivo -->
   <div class="guest-container">
     <ion-grid>
       <ion-row>
         <ion-col class="guest" size="3" *ngFor="let guest of groomGuests">
-          <ion-button [id]="'open-modal-invite-' + guest.id">
-            <ion-icon name="person"></ion-icon>
-          </ion-button>
-          <ion-label>{{ guest.name }}</ion-label>
+          <app-guest-card [guest]="guest" bog="groom"></app-guest-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-
-  <ion-modal id="dialog-modal" #modalGuestDetails [trigger]="'open-modal-invite-' + guest.id"
-    *ngFor="let guest of brideGuests; let i = index" backdropDismiss="false"
-    (ionModalDidPresent)=" saveOldDataGuestType(guest)">
-    <ng-template>
-      <div class="wrapper">
-        <div class="name-container">
-       
-            <ion-icon class="icon-edit" name="pencil-outline" (click)="startEditName(guest.id, guest.name)"></ion-icon>
-            <h1 class="title-invitation" *ngIf="!isEditing[guest.id]">
-              {{guest.name}}
-            </h1>
-        
-          <ion-item *ngIf="isEditing[guest.id]">
-            <ion-input [(ngModel)]="brideGuests[i].name" label="Novo Nome" labelPlacement="stacked"></ion-input>
-            <ion-icon name="checkmark-outline" slot="end" (click)="saveEditedName(guest, brideGuests)"></ion-icon>
-            <ion-icon name="close-outline" slot="end" (click)="cancelEditName(guest)"></ion-icon>
-          </ion-item>
-        </div>
-        <div class="photo-container">
-          <ion-icon name="person"></ion-icon>
-        </div>
-        <ion-item lines="none">
-          <ion-label position="stacked">Telefone</ion-label>
-          <div class="phone-container">
-            <!-- <ion-icon class="icon-edit" name="pencil-outline" (click)="startEditPhone(guest.id, guest.phone)"></ion-icon> -->
-            <ion-text><h3>+55 (81) 99999-9999</h3></ion-text>
-          </div>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Tipo de convidado</ion-label>
-          <ion-select interface="action-sheet" placeholder="{{translateData(guest.type)}}"
-            [(ngModel)]="brideGuests[i].type">
-            <ion-select-option value="guest">Convidado</ion-select-option>
-            <ion-select-option value="bestMan">Padrinho</ion-select-option>
-            <ion-select-option value="brideMaid">Madrinha</ion-select-option>
-            <ion-select-option value="brideMother">mãe da noiva</ion-select-option>
-            <ion-select-option value="brideFather">pai da noiva</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <p class="resend">O convite não chegou? <a href="">Reenviar convite</a></p>
-
-        <div class="button-container">
-          <ion-button class="send-button" (click)="saveGuestData(guest,modalGuestDetails)">Salvar</ion-button>
-          <ion-button class="remove-button" id="bride-delete-guest-{{guest.id}}">cancelar convite</ion-button>
-          <ion-button class="remove-button" (click)="cancelModalGuest(guest,modalGuestDetails)">Voltar</ion-button>
-        </div>
-
-        <ion-alert [trigger]="'bride-delete-guest-' + guest.id" header="Tem certeza que quer cancelar o convite?"
-          [buttons]="alertButtons" (didDismiss)="setResult($event, guest)"></ion-alert>
-      </div>
-    </ng-template>
-  </ion-modal>
-
-
-  <ion-modal id="dialog-modal" #modalGuestDetailsGroom [trigger]="'open-modal-invite-' + guest.id"
-    *ngFor="let guest of groomGuests; let i = index" backdropDismiss="false"
-    (ionModalDidPresent)=" saveOldDataGuestType(guest)">
-    <ng-template>
-      <div class="wrapper">
-        <div class="name-container">
-          <h1 class="title-invitation" *ngIf="!isEditing[guest.id]">
-            {{guest.name}}
-            <ion-icon name="pencil-outline" (click)="startEditName(guest.id, guest.name)"></ion-icon>
-          </h1>
-          <ion-item *ngIf="isEditing[guest.id]">
-            <ion-input [(ngModel)]="groomGuests[i].name" label="Novo Nome" labelPlacement="stacked"></ion-input>
-            <ion-icon name="checkmark-outline" slot="end" (click)="saveEditedName(guest, groomGuests)"></ion-icon>
-            <ion-icon name="close-outline" slot="end" (click)="cancelEditName(guest)"></ion-icon>
-          </ion-item>
-        </div>
-        <div class="photo-container">
-          <ion-icon name="person"></ion-icon>
-        </div>
-        <ion-item>
-          <ion-label position="stacked">Tipo de convidado</ion-label>
-          <ion-select interface="action-sheet" placeholder="{{translateData(guest.type)}}"
-            [(ngModel)]="groomGuests[i].type">
-            <ion-select-option value="guest">Convidado</ion-select-option>
-            <ion-select-option value="bestMan">Padrinho</ion-select-option>
-            <ion-select-option value="brideMaid">Madrinha</ion-select-option>
-            <ion-select-option value="groomMother">mãe do noivo</ion-select-option>
-            <ion-select-option value="groomFather">pai do noivo</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <p class="resend">O convite não chegou? <a href="">Reenviar convite</a></p>
-
-        <div class="button-container">
-          <ion-button class="send-button" (click)="saveGuestData(guest,modalGuestDetailsGroom)">Salvar</ion-button>
-          <ion-button class="remove-button" id="groom-delete-guest-{{guest.id}}">cancelar convite</ion-button>
-          <ion-button class="remove-button" (click)="cancelModalGuest(guest,modalGuestDetailsGroom)">Voltar</ion-button>
-        </div>
-      </div>
-      <ion-alert [trigger]="'groom-delete-guest-' + guest.id" header="Tem certeza que quer cancelar o convite?"
-        [buttons]="alertButtons" (didDismiss)="setResult($event, guest)"></ion-alert>
-    </ng-template>
-  </ion-modal>
 </ion-content>

@@ -37,7 +37,7 @@ id:string,
 name:string,
 type: PersonType,
 email:string,
-phone:number| string | null
+phone: string 
 photo?:string
 bog:'bride'| 'groom' 
 }

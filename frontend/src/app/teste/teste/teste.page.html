@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>teste</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="guest-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="guest" size="3" *ngFor="let guest of groomGuests">
+          <app-guest-card [guest]="guest" ></app-guest-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+</ion-content>

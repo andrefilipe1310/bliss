@@ -1,0 +1,185 @@
+/* Estilos base do modal */
+ion-modal#dialog-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+
+  h1 {
+    margin: 20px 20px 10px 20px;
+  }
+
+  ion-icon {
+    margin-right: 6px;
+    width: 48px;
+    height: 48px;
+    padding: 4px 0;
+    color: #aaaaaa;
+  }
+
+  .wrapper {
+    margin-bottom: 10px;
+  }
+}
+
+/* Container do ícone de edição */
+.edit-icon-container {
+  display: flex;
+  justify-content: flex-end;
+
+  ion-icon {
+    width: 2em !important; 
+    color: var(--gray-text-color) !important;
+    cursor: pointer;
+  }
+}
+
+/* Containers comuns */
+.name-container, .phone-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Botão de convidado */
+.guest-button {
+  width: 3rem !important;
+ 
+  --border-radius: 25px !important;
+  --background: #fff;
+  border: 1px solid var(--gray-text-color);
+  border-radius: 25px;
+}
+
+/* Estilos compartilhados entre bride e groom */
+.bride, .groom {
+  .title-invitation {
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'MainFont';
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .photo-container {
+    justify-self: center;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .resend {
+    align-self: center;
+    text-align: center;
+    color: var(--gray-text-color);
+  }
+
+  .remove-button {
+    width: 10rem !important;
+    height: 3rem !important;
+    border-radius: 10px !important;
+    --background: #fff;
+  }
+
+  ion-input, ion-select {
+    border-radius: 5px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    margin-top: 0.5rem;
+  }
+
+  ion-select::part(icon) {
+    justify-self: end;
+    visibility: hidden;
+  }
+
+  ion-input:hover {
+    border-width: 2px;
+  }
+
+  ion-label {
+    margin-left: 0.8rem;
+  }
+
+  .send-button {
+    width: 10rem !important;
+    height: 3rem !important;
+    border-radius: 10px !important;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    justify-self: center;
+    margin-top: 2rem;
+  }
+}
+
+/* Estilos específicos da noiva (bride) */
+.bride {
+  .title-invitation {
+    color: var(--secound-color);
+  }
+
+  ion-label, ion-icon {
+    color: var(--ion-color-primary);
+  }
+
+  .photo-container {
+    box-shadow: 0px 5px 5px var(--secound-color);
+  }
+
+  .remove-button {
+    color: var(--secound-color);
+  }
+
+  ion-input, ion-select {
+    border: 1px solid var(--secound-color);
+    
+    &:hover {
+      border-color: var(--secound-color);
+    }
+  }
+
+  .send-button {
+    --background: var(--secound-color);
+  }
+}
+
+/* Estilos específicos do noivo (groom) */
+.groom {
+  .title-invitation {
+    color: var(--gray-text-color);
+  }
+
+  ion-label, ion-icon {
+    color: var(--gray-text-color);
+  }
+
+  .photo-container {
+    box-shadow: 0px 5px 5px var(--gray-text-color);
+  }
+
+  .remove-button {
+    color: var(--gray-text-color);
+  }
+
+  ion-input, ion-select {
+    border: 1px solid var(--gray-text-color);
+    
+    &:hover {
+      border-color: var(--gray-text-color);
+    }
+  }
+
+  .send-button {
+    --background: var(--gray-text-color);
+  }
+}

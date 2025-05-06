@@ -1,0 +1,46 @@
+<ion-modal [isOpen]="isOpen" class="dialog-modal" (didDismiss)="closeModal()" backdropDismiss="false">
+  <ng-template>
+    <div class="wrapper">
+      <h1 class="title-invite" [ngClass]="guestType">Enviar Convite para {{ guestType === 'bride' ? 'a Noiva' : 'o Noivo' }}</h1>
+
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label position="stacked">Nome</ion-label>
+          <ion-input [(ngModel)]="guest.name" placeholder="ex: Maria Silva"></ion-input>
+        </ion-item>
+        <ion-text color="danger">{{ errorName }}</ion-text>
+
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input [(ngModel)]="guest.email" placeholder="ex: maria@gmail.com"></ion-input>
+        </ion-item>
+        <ion-text color="danger">{{ errorEmail }}</ion-text>
+
+        <ion-item>
+          <ion-label position="stacked">Telefone</ion-label>
+          <ion-input [(ngModel)]="guest.phone" placeholder="ex: 81999999999"></ion-input>
+        </ion-item>
+        <ion-text color="danger">{{ errorPhone }}</ion-text>
+
+        <ion-item>
+          <ion-label position="stacked">Tipo</ion-label>
+          <ion-select [(ngModel)]="guest.type" placeholder="Selecione o tipo">
+            <ion-select-option value="guest">Convidado</ion-select-option>
+            <ion-select-option value="bestMan">Padrinho</ion-select-option>
+            <ion-select-option value="brideMaid">Madrinha</ion-select-option>
+            <ion-select-option *ngIf="guestType === 'bride'" value="brideMother">Mãe da noiva</ion-select-option>
+            <ion-select-option *ngIf="guestType === 'bride'" value="brideFather">Pai da noiva</ion-select-option>
+            <ion-select-option *ngIf="guestType === 'groom'" value="groomMother">Mãe do noivo</ion-select-option>
+            <ion-select-option *ngIf="guestType === 'groom'" value="groomFather">Pai do noivo</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <div class="button-container">
+        <ion-button [ngClass]="'background-'+guestType" (click)="submit()">Enviar</ion-button>
+        <ion-button [ngClass]="'background-'+guestType" (click)="closeModal()">Cancelar</ion-button>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+

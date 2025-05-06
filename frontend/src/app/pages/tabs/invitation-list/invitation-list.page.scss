@@ -1,25 +1,22 @@
-
 //* era para estar no global
 @font-face {
     font-family: 'MainFont';
     src: url('../../../../assets/fonts/Main-Font.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-  }
+}
 
 
-.flex{
+.flex {
     display: flex;
 }
-.colunm{
-    flex-direction: column;
-}
-.center{
+
+.center {
     align-items: center;
     justify-content: center;
 }
 
-.title{
+.title {
     color: red;
     text-align: center;
     width: 100%;
@@ -28,21 +25,23 @@
     color: var(--secound-color)
 }
 
-.container-separation{
+.container-separation {
     height: 15px;
     width: 100%;
     justify-content: space-evenly;
 
-    ion-icon{
+    ion-icon {
         font-size: 1.5rem;
         color: var(--secound-color);
     }
-    .line{
+
+    .line {
         width: 30%;
         height: 1px;
         background-color: var(--secound-color);
     }
-    .separation{
+
+    .separation {
         width: 5px;
         height: 5px;
         background-color: red;
@@ -51,136 +50,18 @@
     }
 }
 
-.container-separation-2{
-    height: 15px;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-top: 1rem;
-
-    ion-icon{
-        font-size: 1.5rem;
-        color: var(--blue-text-color);
-    }
-    .line{
-        width: 30%;
-        height: 1px;
-        background-color: var(--blue-text-color);
-    }
-    .separation{
-        width: 5px;
-        height: 5px;
-        background-color: red;
-        rotate: 45deg;
-        background-color: var(--blue-text-color);
-    }
-}
-
-
-ion-content{
+ion-content {
     --padding-top: 6rem
 }
 
-.title-invite{
-    text-align:center;
-    font-size: 2.5rem;
-    font-family: 'MainFont';
-    color: var(--secound-color)
-}
-
-.title-invitation{
-    text-align:center;
-    font-size: 1.5rem;
-    font-family: 'MainFont';
-    color: var(--secound-color)
-}
-
-.photo-container{
-    justify-self: center;
-    width: 10rem;
-    height: 10rem;
-    box-shadow: 0px 5px 5px var(--secound-color);
-    border-radius: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-.resend{
-    align-self: center;
-    text-align: center;
-    color: var(--gray-text-color);
-}
-.remove-button{
-    width: 10rem !important;
-    height: 3rem !important;
-    border-radius: 10px !important;
-    --background: ;
-    color: var(--secound-color);
-
-}
-ion-list{
-    ion-item{
-        width: 20rem;
-        max-height: 90rem;
-    }
-}
-
-ion-input{
-    border: 1px solid var(--secound-color);
-    border-radius: 5px; 
-    --padding-start: 20px;
-    --padding-end: 20px; 
-    margin-top: 0.5rem;
-}
-
-
-
-ion-select{
-    border: 1px solid var(--secound-color);
-    border-radius: 5px; 
-    --padding-start: 20px;
-    --padding-end: 20px; 
-    margin-top: 0.5rem;
-    
-}
-ion-select::part(icon) {
-    justify-self: end;
-    visibility: hidden;
-  }
-
-ion-input:hover{
-    border: 2px solid var(--secound-color);
-}
-
-ion-label{
-    margin-left: 0.8rem;
-}
-
-.send-button{
-    width: 10rem !important;
-    height: 3rem !important;
-    border-radius: 10px !important;
-    --background: var(--secound-color);
-
-}
-.button-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    justify-self: center;
-    margin-top: 2rem;
-}
-
-
-.container-invite-buttons{
+.container-invite-buttons {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
     margin-top: 1rem;
     margin-bottom: 1rem;
 
-    div{
+    div {
         width: 6rem;
         height: 10rem;
         display: flex !important;
@@ -188,7 +69,8 @@ ion-label{
         align-items: center;
         text-align: center;
     }
-    .open-invitation-bride{
+
+    .open-invitation-bride {
         --border-radius: 20px;
         --border-color: var(--secound-color);
         --border-style: solid;
@@ -196,12 +78,14 @@ ion-label{
         width: 5rem;
         height: 5rem;
         --background: ;
-        
+
     }
-    ion-icon{
+
+    ion-icon {
         font-size: 2rem;
     }
-    .open-invitation-groom{
+
+    .open-invitation-groom {
         --border-radius: 20px;
         --border-color: var(--blue-text-color);
         --border-style: solid;
@@ -210,24 +94,26 @@ ion-label{
         width: 5rem;
         height: 5rem;
 
-   
+
     }
-    ion-label{
+
+    ion-label {
         margin-left: 0px;
         margin-top: 0.5rem;
         color: var(--gray-text-color);
     }
 }
 
-.icon-husband{
+.icon-husband {
     color: var(--blue-text-color);
 }
-.icon-wife{
+
+.icon-wife {
     color: var(--secound-color);
 }
 
-.guest-container{
-    box-shadow: inset 0px 0px 8px rgb(75, 75, 75) ;
+.guest-container {
+    box-shadow: inset 0px 0px 8px rgb(75, 75, 75);
     width: 90%;
     padding: 1rem 1rem;
     justify-self: center;
@@ -235,14 +121,15 @@ ion-label{
     border-radius: 10px;
 
 
-    ion-col{
+    ion-col {
         width: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+
     }
-    ion-button{
+
+    ion-button {
         width: 3rem !important;
         height: 3rem !important;
         --border-radius: 25px !important;
@@ -250,90 +137,13 @@ ion-label{
         border: 1px solid var(--gray-text-color);
         border-radius: 25px;
     }
-    ion-label{
+
+    ion-label {
         margin-left: 0px;
         color: var(--gray-text-color);
     }
-    ion-icon{
+
+    ion-icon {
         color: var(--gray-text-color);
     }
 }
-
-ion-text{
-    display: block; /* Garante que o ion-text se comporte como um bloco */
-    width: 100%;
-    text-align: center;
-    margin-top: 5px
-}
-
-//styled from ionic
-
-ion-modal#dialog-modal {
-    --width: fit-content;
-    --min-width: 250px;
-    --height: fit-content;
-    --border-radius: 6px;
-    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
-  }
-  
-  ion-modal#dialog-modal h1 {
-    margin: 20px 20px 10px 20px;
-  }
-  
-  ion-modal#dialog-modal ion-icon {
-    margin-right: 6px;
-  
-    width: 48px;
-    height: 48px;
-  
-    padding: 4px 0;
-  
-    color: #aaaaaa;
-  }
-  
-  ion-modal#dialog-modal .wrapper {
-    margin-bottom: 10px;
-  }
-
-  .title-invitation {
-    display: flex; 
-    align-items: center; 
-    gap: 0.5em; 
-  }
-  
-  .icon-edit {
-    font-size: 1em; 
-    color: var(--ion-color-medium); 
-    opacity: 0.7; 
-    cursor: pointer; 
-    
-  }
-
-  .name-container {
-    display: flex;
-    align-items: center;
-    & .icon-edit { 
-        position: relative;
-        left: 2em;
-        font-size: 12px;
-        width: 3.5em !important;
-        height: 2.5em !important;
-      }
-  }
-
-  .phone-container {
-    display: flex;
-    align-items: center;
-    & .icon-edit { 
-        position: relative;
-        left: 1em;
-        font-size: 12px;
-        width: 3.5em !important;
-        height: 2.5em !important;
-      }
-
-      color: var(--ion-color-primary);
-      & h3 {
-        font-size: 1.3rem;
-      }
-  }

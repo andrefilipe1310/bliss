@@ -4,7 +4,7 @@
         "name": "Isabela Santos",
         "type": "brideMother",
         "email": "isabela.santos@example.com",
-        "phone": 11911111111,
+        "phone": "11911111111",
         "photo": "https://example.com/isabela.jpg",
         "bog": "bride"
     },
@@ -13,7 +13,7 @@
         "name": "Rafaela Oliveira",
         "type": "brideMaid",
         "email": "rafaela.oliveira@example.com",
-        "phone": 21922222222,
+        "phone": "21922222222",
         "bog": "bride"
     },
     {
@@ -21,7 +21,7 @@
         "name": "Lucas Mendes",
         "type": "bestMan",
         "email": "lucas.mendes@example.com",
-        "phone": 31933333333,
+        "phone": "31933333333",
         "photo": "https://example.com/lucas.jpg",
         "bog": "bride"
     },
@@ -30,7 +30,7 @@
         "name": "Camila Costa",
         "type": "guest",
         "email": "camila.costa@example.com",
-        "phone": 41944444444,
+        "phone": "41944444444",
         "bog": "bride"
     },
     {
@@ -38,7 +38,7 @@
         "name": "Gabriel Silva",
         "type": "guest",
         "email": "gabriel.silva@example.com",
-        "phone": 51955555555,
+        "phone": "51955555555",
         "photo": "https://example.com/gabriel.jpg",
         "bog": "bride"
     },
@@ -47,7 +47,7 @@
         "name": "Ana Clara",
         "type": "brideMaid",
         "email": "ana.clara@example.com",
-        "phone": 11999999999,
+        "phone": "11999999999",
         "photo": "https://example.com/ana.jpg",
         "bog": "groom"
     },
@@ -56,7 +56,7 @@
         "name": "Carlos Eduardo",
         "type": "guest",
         "email": "carlos.eduardo@example.com",
-        "phone": 21988888888,
+        "phone": "21988888888",
         "bog": "groom"
     },
     {
@@ -64,7 +64,7 @@
         "name": "Fernanda Lima",
         "type": "guest",
         "email": "fernanda.lima@example.com",
-        "phone": 31977777777,
+        "phone": "31977777777",
         "photo": "https://example.com/fernanda.jpg",
         "bog": "groom"
     },
@@ -73,7 +73,7 @@
         "name": "Mariana Costa",
         "type": "groomMother",
         "email": "mariana.costa@example.com",
-        "phone": 41966666666,
+        "phone": "41966666666",
         "bog": "groom"
     },
     {
@@ -81,7 +81,7 @@
         "name": "Ricardo Almeida",
         "type": "bestMan",
         "email": "ricardo.almeida@example.com",
-        "phone": 51955555555,
+        "phone": "51955555555",
         "photo": "https://example.com/ricardo.jpg",
         "bog": "groom"
     }
