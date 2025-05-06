@@ -1,6 +1,8 @@
+
 import { Component } from '@angular/core';
 import { Guest } from "src/app/models/pages-interfaces.model";
-import data from '../../../models/testData.json'
+import data from '../../../mocks/testData.json'
+
 
 @Component({
   selector: 'app-invitation-list',

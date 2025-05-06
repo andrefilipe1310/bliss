@@ -1,17 +1,91 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="header">
+    <h2>Grande momento em:</h2>
+    <h1>365 dias</h1>
+    <p>12/02/2026</p>
+  </div>
+
+  <div class="icons">
+    <ng-container *ngIf="notificationsNumber>0 else noNotifications">
+      <div class="division-buttons-icon">
+        <div class="show-notifications">{{maxNotificationsReach()}}</div>
+        <ion-button class="icon" id="open-notifications">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-button>
+        <ion-label>Notificações</ion-label>
+      </div>
+    </ng-container>
+    <ng-template #noNotifications>
+      <div class="division-buttons-icon">
+        <ion-button class="icon" id="open-notifications">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-button>
+        <ion-label>Notificações</ion-label>
+      </div>
+    </ng-template>
+    <div class="division-buttons-icon">
+      <ion-button class="icon" (click)="activeSearch()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-label>Pesquisar</ion-label>
+    </div>
+    <!-- Não vai existir -->
+    <div class="division-buttons-icon">
+      <ion-button class="icon" (click)="goToPresents()">
+        <ion-icon name="gift-outline"></ion-icon>
+      </ion-button>
+      <ion-label>Presentes</ion-label>
+    </div>
+  </div>
+
+  <ng-container *ngIf="searchIsActive else notActive" class="container-search">
+    <ion-input type="text" (ionInput)="search($event.detail.value || '')" fill="outline" placeholder="Pesquisar...">
+      <ion-icon slot="start" name="search-outline"></ion-icon>
+    </ion-input>
+    <div class="container-categories">
+      <ion-button (click)="filter(categorie.label)" *ngFor="let categorie of expanseCategories">{{categorie.label}}</ion-button>
+    </div>
+    <!-- Não colocar estilo inline -->
+    <div style="display: flex; align-items: center;justify-content: center; width: 100%; margin-top: 0.5rem;">
+      <ion-button (click)="Clearfilter()" class="clear-filter">
+        <ion-icon slot="start" name="remove-circle"></ion-icon>
+        Limpar filtros</ion-button>
+    </div>
+    
+  </ng-container>
+  
+  <ng-template #notActive>
+    
+  </ng-template>
+
+  <ion-list >
+    <ion-item button *ngFor="let service of filteredServices" (click)="goToServiceDetail()">
+      <img
+      src="https://docs-demo.ionic.io/assets/madison.jpg"
+      alt="The Wisconsin State Capitol building in Madison, WI at night"
+      > <!-- Colocar uma imagem mais bonitinha pra fazer sentido -->
+      <ion-label>
+        <h2>{{service.name}}</h2>
+        <p>Categoria: {{changeCategoryToPTBR(service.category)}}</p>
+        <p>Email:{{service.email}}</p>
+        <ng-container *ngIf="service.phone else notNumber">
+          <p>Contato: {{service.phone}}</p>
+        </ng-container>
+        <ng-template #notNumber></ng-template>
+        <h3><ion-icon name="cash-outline"></ion-icon> R$ {{formatNumber(service.value)}}</h3>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-modal id="dialog-modal" #modalNotifications trigger="open-notifications" backdropDismiss="false">
+    <ng-template>
+      <button (click)="modalNotifications.dismiss()">x</button>
+      <app-notifications/>
+    </ng-template>
+  </ion-modal>
+    
+
+
 </ion-content>
-
-
-
-

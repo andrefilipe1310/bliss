@@ -1,3 +1,4 @@
+import { PresentsPage } from './presents/presents.page';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule)
+        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
         path: 'inviteManagment',
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'tableManagement',
         loadChildren: () => import('./table-management/table-management.module').then(m => m.TableManagementPageModule)
+      },
+      {
+        path: 'presents',
+        loadChildren: () => import('./presents/presents.module').then(m => m.PresentsPageModule)
       },
       {
         path: 'bugetManagement',

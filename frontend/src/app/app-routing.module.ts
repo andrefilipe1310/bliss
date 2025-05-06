@@ -8,30 +8,32 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'wedding-information',
-    loadChildren: () => import('./pages/wedding-information/wedding-information.module').then( m => m.WeddingInformationPageModule)
+    loadChildren: () => import('./pages/wedding-information/wedding-information.module').then(m => m.WeddingInformationPageModule)
   },
   {
     path: 'main',
-    loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
+    loadChildren: () => import('./pages/main/main.module').then(m => m.MainPageModule)
   },
   {
     path: '',
-    loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
-  },  {
-    path: 'teste',
-    loadChildren: () => import('./teste/teste/teste.module').then( m => m.TestePageModule)
+    loadChildren: () => import('./pages/main/main.module').then(m => m.MainPageModule)
   },
+  {
 
-
- 
+    path: 'teste',
+    loadChildren: () => import('./teste/teste/teste.module').then(m => m.TestePageModule)
+  }, {
+    path: 'service-detail',
+    loadChildren: () => import('./pages/service-detail/service-detail.module').then(m => m.ServiceDetailPageModule)
+  },
 
 ];
 

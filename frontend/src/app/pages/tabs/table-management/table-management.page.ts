@@ -15,7 +15,7 @@ import {
   IonAlert
 } from '@ionic/angular/standalone';
 import { Guest, Table, TableGuest } from 'src/app/models/pages-interfaces.model';
-import tableGuestsExamples from '../../../models/tableGuestsExamples.json'
+import tableGuestsExamples from '../../../mocks/tableGuestsExamples.json'
 import type { OverlayEventDetail } from '@ionic/core';
 
 /*

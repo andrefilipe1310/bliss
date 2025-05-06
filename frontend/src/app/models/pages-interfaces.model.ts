@@ -48,4 +48,16 @@ export interface TableGuest{
   type: "guest" | "brideMaid" | "bestMan" | "brideMother" | "brideFather" | "groomFather" | "groomMother";
 }
 
+export const ExpenseCategories: { value: Service['category']; label: string }[] = [
+  { value: 'buffet', label: 'Buffet' },
+  { value: 'localRent', label: 'Aluguel de Local' },
+  { value: 'decoration', label: 'Decoração' },
+  { value: 'cake', label: 'Bolo' },
+  { value: 'gifts', label: 'Presentes' },
+  { value: 'clothing', label: 'Vestuário' },
+  { value: 'filmMaking', label: 'Filmagem' },
+  { value: 'brideBeauty', label: 'Beleza da Noiva' },
+  { value: 'honeyMoon', label: 'Lua de Mel' }
+];
+
     
