@@ -14,8 +14,8 @@
   <ion-item lines="none" class="input-name">
     <ion-label position="stacked">Eu sou</ion-label>
     <div class="input-group">
-      <ion-input placeholder="Nome"></ion-input>
-      <ion-select interface="popover" slot="end">
+      <ion-input [(ngModel)]="weddingInfo.name" placeholder="Nome"></ion-input>
+      <ion-select [(ngModel)]="weddingInfo.userType" interface="popover" slot="end" placeholder="Tipo">
         <ion-select-option value="noiva">Noiva</ion-select-option>
         <ion-select-option value="noivo">Noivo</ion-select-option>
       </ion-select>
@@ -25,26 +25,26 @@
   <ion-item lines="none" class="input-name-pair">
     <ion-label position="stacked">Meu par é</ion-label>
     <div class="input-group">
-      <ion-input placeholder="Nome"></ion-input>
-      <ion-select interface="popover" slot="end">
+      <ion-input [(ngModel)]="weddingInfo.partnerName" placeholder="Nome"></ion-input>
+      <ion-select [(ngModel)]="weddingInfo.partnerType" interface="popover" slot="end" placeholder="Tipo">
         <ion-select-option value="noiva">Noiva</ion-select-option>
         <ion-select-option value="noivo">Noivo</ion-select-option>
       </ion-select>
     </div>
   </ion-item>
 
-  <app-date-input></app-date-input> <!-- input para adicionar data do casamento -->
+  <app-date-input [weddingInfo]="weddingInfo" [minDate]="minDate"></app-date-input>
   <ion-item lines="none" class="input-guests-budget">
     <div class="input-group-wrapper">
       <div class="input-group">
         <ion-label position="stacked">Nº de Convidados</ion-label>
-        <ion-input type="number" placeholder="0" (ionInput)="blockInput($event)"></ion-input>
+        <ion-input type="text" inputmode="numeric" placeholder="0" (ionInput)="blockGuestsInput($event)"></ion-input>
       </div>
       <div class="input-group">
         <ion-label position="stacked">Orçamento</ion-label>
         <!-- Não deixar ele digitar valores não numericos -->
         <ion-input
-          [(ngModel)]="budget"
+          [(ngModel)]="lastValidBudget"
           (ionInput)="onBudgetInput($event)"
           type="text"
           inputmode="decimal"
@@ -57,48 +57,19 @@
   <div class="suppliers-preference">
     <ion-label class="suppliers-title">Preferência de Fornecedores</ion-label>
     <div class="suppliers-options">
-      <ion-checkbox justify="start" labelPlacement="end">Recepção</ion-checkbox>
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Cerimonialista</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end">Convites</ion-checkbox>
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Foto e Vídeo</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Buffet e Gastronomia</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Decoração</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Noiva e Acessórios</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Confeitaria</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Noivo e Acessórios</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Lua de Mel</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end">Música</ion-checkbox>
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Beleza e Saúde</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Joalheria</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end">Animação</ion-checkbox>
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Celebrante</ion-checkbox
-      >
-      <ion-checkbox justify="start" labelPlacement="end">Outros</ion-checkbox>
-      <ion-checkbox justify="start" labelPlacement="end"
-        >Lembranças</ion-checkbox
-      >
+      @for (supplier of suppliersList; track supplier) {
+        <ion-checkbox
+          justify="start"
+          labelPlacement="end"
+          [checked]="weddingInfo.selectedSuppliers.includes(supplier)"
+          (ionChange)="toggleSupplierSelection(supplier, $event.detail.checked)"
+        >
+          {{ supplier }}
+        </ion-checkbox>
+      }
+      
     </div>
+    
   </div>
 
   <div class="register-button">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -8,10 +8,13 @@ import { AlertController } from '@ionic/angular';
   standalone:false
 })
 export class DateInputComponent  implements OnInit {
+  @Input() weddingInfo: any;  // Recebe weddingInfo do componente pai
+  @Input() minDate: string = '';
 
   constructor(private alertController: AlertController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   selectedDate: string = '';
 
@@ -28,7 +31,7 @@ validateDate(event: any) {
     this.showAlert('Ano inválido', 'Por favor, selecione um ano com até 4 dígitos');
     return;
   }
-  
+  this.weddingInfo.weddingDate = event.target.value;
   this.selectedDate = dateStr;
 }
 

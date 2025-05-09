@@ -5,87 +5,102 @@ import { AlertController } from '@ionic/angular';
   selector: 'app-wedding-information',
   templateUrl: './wedding-information.page.html',
   styleUrls: ['./wedding-information.page.scss'],
-  standalone:false
+  standalone: false
 })
 export class WeddingInformationPage implements OnInit {
-  /* Cria um type para isso e fornece apenas um JSON WenddingInformation*/
-  name: string = '';
-  partnerName: string = '';
-  weddingDate: string = '';
-  guests: number | null = null;
-  budget: string = '';
-  selectedSuppliers: string[] = [];
-  
-  /* Só deixa se for usar */
-  constructor(private alertController: AlertController) { }
+  // Objeto unificado com todas as informações do formulário
+  weddingInfo = {
+    name: '',
+    partnerName: '',
+    userType: '',
+    partnerType: '',
+    weddingDate: '',
+    guests: '',
+    budget: '',
+    selectedSuppliers: [] as string[],
+  };
+
+  lastValidBudget = 'R$ 0,00';
+  formError = false;
+  minDate: string = '';
+
+  suppliersList: string[] = [
+    'Recepção', 'Cerimonialista', 'Convites', 'Foto e Vídeo', 'Buffet e Gastronomia',
+    'Decoração', 'Noiva e Acessórios', 'Confeitaria', 'Noivo e Acessórios',
+    'Lua de Mel', 'Música', 'Beleza e Saúde', 'Joalheria', 'Animação',
+    'Celebrante', 'Outros', 'Lembranças'
+  ];
 
   ngOnInit() {
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0]; // bloqueia datas passadas
   }
 
-  
-
-lastValidBudget: string = 'R$ 0,00'; // tomar cuidado com o tipo string nesse campo
-
-onBudgetInput(event: any) {
-  const input = event.target as HTMLInputElement;
-  let value = input.value;
-  
-  // 1. Remove toda formatação existente, mantendo apenas dígitos
-  const rawValue = value.replace(/[^\d]/g, '');
-  
-  // 2. Converte para número (em centavos)
-  const numericValue = parseInt(rawValue, 10) || 0;
-  
-  // 3. Define o valor máximo em centavos (10.000.000,00 = 1.000.000.000 centavos)
-  const MAX_IN_CENTS = 1000000000;
-  
-  // 4. Verifica se ultrapassou o limite
-  if (numericValue > MAX_IN_CENTS) {
-    // Se ultrapassar, restaura o último valor válido
-    input.value = this.lastValidBudget;
-    // Coloca o cursor no final
-    setTimeout(() => input.setSelectionRange(this.lastValidBudget.length, this.lastValidBudget.length));
-    return;
+  formatCurrency(value: number): string {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
-  
-  
-  const formattedValue = this.formatCurrency(numericValue / 100);
-  
-  // 5. Atualiza somente se for diferente
-  if (formattedValue !== this.lastValidBudget) {
-    this.budget = formattedValue;
-    this.lastValidBudget = formattedValue;
-  }
-}
-/* Sugestão, declara as funções antes de usa-las */
-private formatCurrency(value: number): string {
-  return value.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2
-  }).replace('R$', 'R$ ');
-}
 
-  
-  blockInput(event: any) {
+  onBudgetInput(event: any) {
+    const input = event.target as HTMLInputElement;
+    let rawValue = input.value.replace(/\D/g, '');
+
+    const MAX_CENTS = 1000000000;
+    if (rawValue.length > 11) {
+      rawValue = rawValue.slice(0, 11);
+    }
+
+    const numericValue = parseInt(rawValue, 10) || 0;
+    if (numericValue > MAX_CENTS) {
+      input.value = this.lastValidBudget;
+      setTimeout(() => input.setSelectionRange(this.lastValidBudget.length, this.lastValidBudget.length));
+      return;
+    }
+
+    const formatted = this.formatCurrency(numericValue / 100);
+    this.lastValidBudget = formatted;
+    this.weddingInfo.budget = formatted;
+    input.value = formatted;
+  }
+
+  blockGuestsInput(event: any) {
     const input = event.target as HTMLInputElement;
     let value = input.value;
-    // Remove qualquer caractere que não seja número
-    value = value.replace(/[^0-9]/g, '');
-    // Limita o número de caracteres para no máximo 4
-    if (value.length > 4) {
-      value = value.substring(0, 4);
+  
+    // Remove tudo que não for dígito (0-9)
+    value = value.replace(/[^0-9]/g, '').slice(0, 4);
+  
+    // Limita a 1000
+    const numericValue = parseInt(value || '0', 10);
+    if (numericValue > 1000) {
+      value = '1000';
     }
-    if (value) {
-      const numericValue = parseInt(value, 10);
-      if (numericValue > 1000) {
-        // Agora trava no último valor permitido
-        while (parseInt(value, 10) > 1000 && value.length > 0) {
-          value = value.substring(0, value.length - 1);
-        }
-      }
-    }
+  
     input.value = value;
+    this.weddingInfo.guests = value;
+  }
+  
+
+  toggleSupplierSelection(supplier: string, isChecked: boolean) {
+    const list = this.weddingInfo.selectedSuppliers;
+    if (isChecked) {
+      if (!list.includes(supplier)) list.push(supplier);
+    } else {
+      this.weddingInfo.selectedSuppliers = list.filter(item => item !== supplier);
+    }
   }
 
+  submitForm() {
+    const {
+      name, partnerName, userType, partnerType,
+      weddingDate, guests, budget
+    } = this.weddingInfo;
+
+    if (!name || !partnerName || !userType || !partnerType || !weddingDate || !guests || !budget) {
+      this.formError = true;
+      return;
+    }
+
+    this.formError = false;
+    console.log('Formulário enviado com sucesso:', this.weddingInfo);
+  }
 }
