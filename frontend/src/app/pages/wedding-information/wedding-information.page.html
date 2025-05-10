@@ -42,7 +42,6 @@
       </div>
       <div class="input-group">
         <ion-label position="stacked">Orçamento</ion-label>
-        <!-- Não deixar ele digitar valores não numericos -->
         <ion-input
           [(ngModel)]="lastValidBudget"
           (ionInput)="onBudgetInput($event)"
@@ -73,7 +72,6 @@
   </div>
 
   <div class="register-button">
-    <!-- Colocar a css em css -->
-    <ion-button expand="block" color="primary">REGISTRAR</ion-button>
+    <ion-button expand="block" (click)="submitForm()">REGISTRAR</ion-button>
   </div>
 </ion-content>

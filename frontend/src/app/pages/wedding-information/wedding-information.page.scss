@@ -35,13 +35,14 @@ body {
     font-weight: 600;
   }
   & .input-group {
+    width: 100%;
     margin-top: 1rem;
     display: flex;
     justify-content: space-between;
 
    & ion-input {
       --padding-start: 10px;
-      --padding-end:100px;
+      --padding-end:10px;
       border: solid 1px var(--secound-color);
       flex: 1;
       margin-right: 10px;
