@@ -38,12 +38,13 @@
     <div class="input-group-wrapper">
       <div class="input-group">
         <ion-label position="stacked">Nº de Convidados</ion-label>
-        <ion-input type="text" inputmode="numeric" placeholder="0" (ionInput)="blockGuestsInput($event)"></ion-input>
+        <ion-input type="text" inputmode="numeric" placeholder="0" [(ngModel)]="weddingInfo.guests" (ionInput)="blockGuestsInput($event)"></ion-input>
       </div>
       <div class="input-group">
         <ion-label position="stacked">Orçamento</ion-label>
         <ion-input
           [(ngModel)]="lastValidBudget"
+          [(ngModel)]="weddingInfo.budget"
           (ionInput)="onBudgetInput($event)"
           type="text"
           inputmode="decimal"

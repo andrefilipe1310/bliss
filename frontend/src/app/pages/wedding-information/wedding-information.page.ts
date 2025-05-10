@@ -186,6 +186,4 @@ blockGuestsInput(event: any) {
     this.router.navigate(['/login']);
   }, 2000);
 }
-
-
 }
