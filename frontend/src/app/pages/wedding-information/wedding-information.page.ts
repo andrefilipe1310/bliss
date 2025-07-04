@@ -6,12 +6,10 @@ import { ToastService } from 'src/app/services/toast.service';
   selector: 'app-wedding-information',
   templateUrl: './wedding-information.page.html',
   styleUrls: ['./wedding-information.page.scss'],
-  standalone: false
+  standalone: false,
 })
 export class WeddingInformationPage implements OnInit {
-
   constructor(private toastService: ToastService, private router: Router) {}
-
 
   // Objeto unificado com todas as informações do formulário
   weddingInfo = {
@@ -30,10 +28,23 @@ export class WeddingInformationPage implements OnInit {
   minDate: string = '';
 
   suppliersList: string[] = [
-    'Recepção', 'Cerimonialista', 'Convites', 'Foto e Vídeo', 'Buffet e Gastronomia',
-    'Decoração', 'Noiva e Acessórios', 'Confeitaria', 'Noivo e Acessórios',
-    'Lua de Mel', 'Música', 'Beleza e Saúde', 'Joalheria', 'Animação',
-    'Celebrante', 'Outros', 'Lembranças'
+    'Recepção',
+    'Cerimonialista',
+    'Convites',
+    'Foto e Vídeo',
+    'Buffet e Gastronomia',
+    'Decoração',
+    'Noiva e Acessórios',
+    'Confeitaria',
+    'Noivo e Acessórios',
+    'Lua de Mel',
+    'Música',
+    'Beleza e Saúde',
+    'Joalheria',
+    'Animação',
+    'Celebrante',
+    'Outros',
+    'Lembranças',
   ];
 
   ngOnInit() {
@@ -42,58 +53,67 @@ export class WeddingInformationPage implements OnInit {
   }
 
   formatCurrency(value: number): string {
-    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    return value.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
   }
 
- // Atualiza o orçamento com bloqueio até R$ 10.000.000,00
-onBudgetInput(event: any) {
-  const input = event.target as HTMLInputElement;
-  let rawValue = input.value.replace(/\D/g, '');
+  // Atualiza o orçamento com bloqueio até R$ 10.000.000,00
+  onBudgetInput(event: any) {
+    const input = event.target as HTMLInputElement;
+    let rawValue = input.value.replace(/\D/g, '');
 
-  // Limita a 9 dígitos (1000000000 centavos = 10 milhões)
- if (rawValue.length > 10) {
-  rawValue = rawValue.slice(0, 10);
-  this.toastService.show('O valor máximo do orçamento é de 10 milhões', 'danger');
-}
+    // Limita a 9 dígitos (1000000000 centavos = 10 milhões)
+    if (rawValue.length > 10) {
+      rawValue = rawValue.slice(0, 10);
+      this.toastService.show(
+        'O valor máximo do orçamento é de 10 milhões',
+        'danger'
+      );
+    }
 
+    let numericValue = parseInt(rawValue || '0', 10);
 
-  let numericValue = parseInt(rawValue || '0', 10);
+    // Impede valores acima de 10 milhões
+    const MAX_CENTS = 1000000000;
+    if (numericValue > MAX_CENTS) {
+      numericValue = MAX_CENTS;
+      rawValue = numericValue.toString();
+      this.toastService.show(
+        'O valor máximo do orçamento é de 10 milhões',
+        'danger'
+      );
+    }
 
-  // Impede valores acima de 10 milhões
-  const MAX_CENTS = 1000000000;
-  if (numericValue > MAX_CENTS) {
-    numericValue = MAX_CENTS;
-    rawValue = numericValue.toString();
-     this.toastService.show('O valor máximo do orçamento é de 10 milhões', 'danger'); 
+    const formatted = this.formatCurrency(numericValue / 100);
+    this.lastValidBudget = formatted;
+    this.weddingInfo.budget = formatted;
+    input.value = formatted;
+
+    setTimeout(() => {
+      input.setSelectionRange(formatted.length, formatted.length);
+    });
   }
 
-  const formatted = this.formatCurrency(numericValue / 100);
-  this.lastValidBudget = formatted;
-  this.weddingInfo.budget = formatted;
-  input.value = formatted;
+  // Atualiza os convidados com limite de 1000
+  blockGuestsInput(event: any) {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/[^0-9]/g, '').slice(0, 4); // Apenas números
 
-  setTimeout(() => {
-    input.setSelectionRange(formatted.length, formatted.length);
-  });
-}
-
-// Atualiza os convidados com limite de 1000
-blockGuestsInput(event: any) {
-  const input = event.target as HTMLInputElement;
-  let value = input.value.replace(/[^0-9]/g, '').slice(0, 4); // Apenas números
-  
-
-  // Limita o número de caracteres para no máximo 4
+    // Limita o número de caracteres para no máximo 4
     if (value.length > 4) {
       value = value.substring(0, 4);
       this.toastService.show('O número máximo de convidados é 1000', 'danger');
     }
 
-
     if (value) {
       const numericValue = parseInt(value, 10);
       if (numericValue >= 1000) {
-        this.toastService.show('O número máximo de convidados é 1000', 'danger');
+        this.toastService.show(
+          'O número máximo de convidados é 1000',
+          'danger'
+        );
         // Agora trava no último valor permitido
         while (parseInt(value, 10) > 1000 && value.length > 0) {
           value = value.substring(0, value.length - 1);
@@ -102,88 +122,179 @@ blockGuestsInput(event: any) {
     }
 
     input.value = value;
-}
-
-
+  }
 
   toggleSupplierSelection(supplier: string, isChecked: boolean) {
     const list = this.weddingInfo.selectedSuppliers;
     if (isChecked) {
       if (!list.includes(supplier)) list.push(supplier);
     } else {
-      this.weddingInfo.selectedSuppliers = list.filter(item => item !== supplier);
+      this.weddingInfo.selectedSuppliers = list.filter(
+        (item) => item !== supplier
+      );
     }
   }
 
+  // Valida se os tipos de usuário são compatíveis
+  validateUserTypes(): boolean {
+    const { userType, partnerType } = this.weddingInfo;
+
+    // Verifica se ambos os tipos foram preenchidos
+    if (!userType || !partnerType) {
+      return true; // Não valida se não estão preenchidos
+    }
+
+    // Não podem ser do mesmo tipo
+    if (userType === partnerType) {
+      this.toastService.show(
+        'O noivo e a noiva devem ter tipos diferentes.',
+        'warning'
+      );
+      return false;
+    }
+
+    return true;
+  }
+
+  // Melhora na validação dos nomes
+  validateNames(): boolean {
+    const { name, partnerName } = this.weddingInfo;
+
+    if (name && name.trim().length < 2) {
+      this.toastService.show(
+        'O nome deve ter pelo menos 2 caracteres.',
+        'warning'
+      );
+      return false;
+    }
+
+    if (partnerName && partnerName.trim().length < 2) {
+      this.toastService.show(
+        'O nome do parceiro deve ter pelo menos 2 caracteres.',
+        'warning'
+      );
+      return false;
+    }
+
+    return true;
+  }
+
+  // Validação em tempo real dos nomes
+  onNameChange(event: any, field: 'name' | 'partnerName') {
+    const value = event.target.value;
+    this.weddingInfo[field] = value;
+
+    // Adiciona classe de erro se o nome for muito curto
+    if (value && value.trim().length < 2) {
+      event.target.classList.add('input-error');
+    } else {
+      event.target.classList.remove('input-error');
+    }
+  }
+
+  // Validação em tempo real dos tipos de usuário
+  onUserTypeChange() {
+    setTimeout(() => {
+      this.validateUserTypes();
+    }, 100);
+  }
+
   submitForm() {
-  const {
-    name,
-    partnerName,
-    userType,
-    partnerType,
-    weddingDate,
-    guests,
-    budget
-  } = this.weddingInfo;
+    const {
+      name,
+      partnerName,
+      userType,
+      partnerType,
+      weddingDate,
+      guests,
+      budget,
+    } = this.weddingInfo;
 
-  // 1. Validação de campos obrigatórios
-  if (!name || !partnerName || !userType || !partnerType || !weddingDate || !guests || !budget) {
-    this.toastService.show('Preencha todos os campos obrigatórios.', 'warning');
-    return;
+    // 1. Validação de campos obrigatórios
+    if (
+      !name ||
+      !partnerName ||
+      !userType ||
+      !partnerType ||
+      !weddingDate ||
+      !guests ||
+      !budget
+    ) {
+      this.toastService.show(
+        'Preencha todos os campos obrigatórios.',
+        'warning'
+      );
+      return;
+    }
+
+    // 2. Validação de nomes
+    if (!this.validateNames()) {
+      return;
+    }
+
+    // 3. Validação de tipos de usuário
+    if (!this.validateUserTypes()) {
+      return;
+    }
+
+    // 4. Validação de data
+    const selectedDate = new Date(weddingDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (isNaN(selectedDate.getTime()) || selectedDate < today) {
+      this.toastService.show(
+        'Escolha uma data válida a partir de hoje.',
+        'danger'
+      );
+      return;
+    }
+
+    if (selectedDate.getFullYear() > 2757) {
+      this.toastService.show('Escolha um ano com até 4 dígitos.', 'danger');
+      return;
+    }
+
+    // 5. Validação do número de convidados
+    const guestCount = parseInt(guests, 10);
+    if (isNaN(guestCount) || guestCount <= 0) {
+      this.toastService.show(
+        'Informe um número válido de convidados.',
+        'danger'
+      );
+      return;
+    }
+
+    if (guestCount > 1000) {
+      this.toastService.show('O limite de convidados é 1000.', 'danger');
+      return;
+    }
+
+    // 6. Validação do orçamento
+    const numericBudget = parseFloat(budget.replace(/[^\d]/g, '')) / 100;
+    if (isNaN(numericBudget) || numericBudget <= 0) {
+      this.toastService.show('Informe um orçamento válido.', 'danger');
+      return;
+    }
+
+    if (numericBudget > 10_000_000) {
+      this.toastService.show('O orçamento máximo é de 10 milhões.', 'danger');
+      return;
+    }
+
+    // 7. Sucesso
+    this.toastService.show('Registro feito com sucesso!', 'success');
+
+    const json = {
+      ...this.weddingInfo,
+      budget: numericBudget,
+      guests: guestCount,
+    };
+
+    console.log('JSON enviado:', JSON.stringify(json, null, 2));
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 2000);
   }
-
-  // 2. Validação de data
-  const selectedDate = new Date(weddingDate);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  if (isNaN(selectedDate.getTime()) || selectedDate < today) {
-    this.toastService.show('Escolha uma data válida a partir de hoje.', 'danger');
-    return;
-  }
-
-  if (selectedDate.getFullYear() > 2757) {
-    this.toastService.show('Escolha um ano com até 4 dígitos.', 'danger');
-    return;
-  }
-
-  // 3. Validação do número de convidados
-  const guestCount = parseInt(guests, 10);
-  if (isNaN(guestCount) || guestCount <= 0) {
-    this.toastService.show('Informe um número válido de convidados.', 'danger');
-    return;
-  }
-
-  if (guestCount > 1000) {
-    this.toastService.show('O limite de convidados é 1000.', 'danger');
-    return;
-  }
-
-  // 4. Validação do orçamento
-  const numericBudget = parseFloat(budget.replace(/[^\d]/g, '')) / 100;
-  if (isNaN(numericBudget) || numericBudget <= 0) {
-    this.toastService.show('Informe um orçamento válido.', 'danger');
-    return;
-  }
-
-  if (numericBudget > 10_000_000) {
-    this.toastService.show('O orçamento máximo é de 10 milhões.', 'danger');
-    return;
-  }
-
-  // 5. Sucesso
-  this.toastService.show('Registro feito com sucesso!', 'success');
-
-  const json = {
-    ...this.weddingInfo,
-    budget: numericBudget,
-    guests: guestCount
-  };
-
-  console.log('JSON enviado:', JSON.stringify(json, null, 2));
-
-  setTimeout(() => {
-    this.router.navigate(['/login']);
-  }, 2000);
-}
 }

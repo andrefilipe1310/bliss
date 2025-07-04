@@ -1,12 +1,19 @@
 <ion-item lines="none" class="input-date">
   <ion-label position="stacked">Casamos em</ion-label>
-  <ion-input 
-    type="date" 
+  <ion-input
+    type="date"
     (ionChange)="updateDate($event)"
     [value]="selectedDate"
-    max="2757-12-31" 
+    max="2757-12-31"
     [min]="minDate"
+    placeholder="Selecione a data"
+    aria-label="Data do casamento"
   >
-    <ion-icon slot="end" name="calendar" color="primary"></ion-icon>
+    <ion-icon
+      slot="end"
+      name="calendar"
+      color="primary"
+      aria-hidden="true"
+    ></ion-icon>
   </ion-input>
 </ion-item>

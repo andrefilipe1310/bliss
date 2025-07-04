@@ -26,6 +26,8 @@
         label-placement="floating"
         fill="outline"
         placeholder="Digite seu nome"
+        [(ngModel)]="formData.name"
+        (ionChange)="validateName($event, 'name')"
       ></ion-input>
 
       <ion-input
@@ -34,6 +36,8 @@
         label-placement="floating"
         fill="outline"
         placeholder="Digite seu sobrenome"
+        [(ngModel)]="formData.lastName"
+        (ionChange)="validateName($event, 'lastName')"
       ></ion-input>
 
       <ion-input
@@ -43,9 +47,12 @@
         label-placement="floating"
         fill="outline"
         placeholder="Ex: address@email.com"
-        (ionChange)="validateEmail($event)" 
+        [(ngModel)]="formData.email"
+        (ionChange)="validateEmail($event)"
       ></ion-input>
-      <span class="error-message" id="email-error">Por favor, insira um email válido.</span>
+      <span class="error-message" id="email-error"
+        >Por favor, insira um email válido.</span
+      >
 
       <ion-input
         class="input-tel"
@@ -54,17 +61,34 @@
         label-placement="floating"
         fill="outline"
         placeholder="(xx) xxxxx-xxxx"
+        [(ngModel)]="formData.phone"
+        (ionChange)="validatePhone($event)"
       ></ion-input>
 
-      <ion-select class="input-country" label="País" label-placement="floating">
+      <ion-select
+        class="input-country"
+        label="País"
+        label-placement="floating"
+        [(ngModel)]="formData.country"
+      >
         <ion-select-option value="br">Brasil</ion-select-option>
       </ion-select>
 
-      <ion-select class="input-state" label="Estado" label-placement="floating">
+      <ion-select
+        class="input-state"
+        label="Estado"
+        label-placement="floating"
+        [(ngModel)]="formData.state"
+      >
         <ion-select-option value="pe">Pernambuco</ion-select-option>
       </ion-select>
 
-      <ion-select class="input-city" label="Cidade" label-placement="floating">
+      <ion-select
+        class="input-city"
+        label="Cidade"
+        label-placement="floating"
+        [(ngModel)]="formData.city"
+      >
         <ion-select-option value="recife">Recife</ion-select-option>
       </ion-select>
 
@@ -75,7 +99,12 @@
         label-placement="floating"
         fill="outline"
         placeholder="********"
+        [(ngModel)]="formData.password"
+        (ionChange)="validatePassword($event)"
       ></ion-input>
+      <span class="error-message" id="password-error"
+        >A senha deve ter pelo menos 8 caracteres.</span
+      >
 
       <ion-input
         class="input-confirmPassoword"
@@ -84,13 +113,16 @@
         label-placement="floating"
         fill="outline"
         placeholder="********"
+        [(ngModel)]="formData.confirmPassword"
+        (ionChange)="validatePasswordMatch($event)"
       ></ion-input>
-
+      <span class="error-message" id="password-match-error"
+        >As senhas não coincidem.</span
+      >
     </div>
 
     <div class="register-button-div">
-      <ion-button>CADASTRAR</ion-button>
+      <ion-button (click)="submitForm()">CADASTRAR</ion-button>
     </div>
-
   </div>
 </ion-content>

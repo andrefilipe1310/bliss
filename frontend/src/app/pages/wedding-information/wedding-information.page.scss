@@ -40,21 +40,19 @@ body {
     display: flex;
     justify-content: space-between;
 
-   & ion-input {
+    & ion-input {
       --padding-start: 10px;
-      --padding-end:10px;
+      --padding-end: 10px;
       border: solid 1px var(--secound-color);
       flex: 1;
       margin-right: 10px;
       border-radius: 8px;
-      
     }
     ion-select {
       --padding-start: 10px;
       border: solid 1px var(--secound-color);
       width: 100px;
       border-radius: 8px;
-      
     }
   }
 }
@@ -62,22 +60,22 @@ body {
 .input-guests-budget {
   --inner-padding-end: 0;
   --padding-start: 0;
-  
+
   .input-group-wrapper {
     display: flex;
     width: 100%;
     justify-content: space-around;
-    
+
     .input-group {
       width: 42%;
-      
+
       ion-label {
         font-size: 1.1rem;
         margin-left: 0.5rem;
         color: var(--gray-text-color);
         font-weight: 600;
       }
-      
+
       ion-input {
         margin-top: 0.5rem;
         --padding-start: 10px;
@@ -126,4 +124,21 @@ body {
     height: 50px;
     font-size: 1rem;
   }
+}
+
+.input-error {
+  border: 1px solid red !important;
+  --border-color: red !important;
+  --color: red !important;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.error-message.visible {
+  display: block;
 }
